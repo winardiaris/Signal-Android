@@ -105,9 +105,25 @@ public class FastJobStorage implements JobStorage {
       return Collections.emptyList();
     } else {
       return Stream.of(jobs)
+                   .groupBy(jobSpec -> {
+                     String queueKey = jobSpec.getQueueKey();
+                     if (queueKey != null) {
+                       return queueKey;
+                     } else {
+                       return jobSpec.getId();
+                     }
+                   })
+                   .map(byQueueKey ->
+                     Stream.of(byQueueKey.getValue()).sorted((j1, j2) -> Long.compare(j1.getCreateTime(), j2.getCreateTime()))
+                           .findFirst()
+                           .orElse(null)
+                   )
+                   .withoutNulls()
+                   .filter(j -> {
+                     List<DependencySpec> dependencies = dependenciesByJobId.get(j.getId());
+                     return dependencies == null || dependencies.isEmpty();
+                   })
                    .filterNot(JobSpec::isRunning)
-                   .filter(this::firstInQueue)
-                   .filter(j -> !dependenciesByJobId.containsKey(j.getId()) || dependenciesByJobId.get(j.getId()).isEmpty())
                    .filter(j -> j.getNextRunAttemptTime() <= currentTime)
                    .sorted((j1, j2) -> Long.compare(j1.getCreateTime(), j2.getCreateTime()))
                    .toList();
@@ -144,9 +160,16 @@ public class FastJobStorage implements JobStorage {
   }
 
   @Override
-  public synchronized int getJobInstanceCount(@NonNull String factoryKey) {
+  public synchronized int getJobCountForFactory(@NonNull String factoryKey) {
     return (int) Stream.of(jobs)
                        .filter(j -> j.getFactoryKey().equals(factoryKey))
+                       .count();
+  }
+
+  @Override
+  public synchronized int getJobCountForQueue(@NonNull String queueKey) {
+    return (int) Stream.of(jobs)
+                       .filter(j -> queueKey.equals(j.getQueueKey()))
                        .count();
   }
 
@@ -171,7 +194,6 @@ public class FastJobStorage implements JobStorage {
                                       existing.getMaxAttempts(),
                                       existing.getMaxBackoff(),
                                       existing.getLifespan(),
-                                      existing.getMaxInstances(),
                                       existing.getSerializedData(),
                                       existing.getSerializedInputData(),
                                       isRunning,
@@ -202,7 +224,6 @@ public class FastJobStorage implements JobStorage {
                                       existing.getMaxAttempts(),
                                       existing.getMaxBackoff(),
                                       existing.getLifespan(),
-                                      existing.getMaxInstances(),
                                       serializedData,
                                       existing.getSerializedInputData(),
                                       isRunning,
@@ -229,7 +250,6 @@ public class FastJobStorage implements JobStorage {
                                      existing.getMaxAttempts(),
                                      existing.getMaxBackoff(),
                                      existing.getLifespan(),
-                                     existing.getMaxInstances(),
                                      existing.getSerializedData(),
                                      existing.getSerializedInputData(),
                                      false,

@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.service.webrtc.state;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.OptionalLong;
+
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
@@ -35,6 +37,8 @@ public class CallInfoState {
   GroupCall                               groupCall;
   WebRtcViewModel.GroupCallState          groupState;
   Set<RecipientId>                        identityChangedRecipients;
+  OptionalLong                            remoteDevicesCount;
+  Long                                    participantLimit;
 
   public CallInfoState() {
     this(WebRtcViewModel.State.IDLE,
@@ -45,7 +49,9 @@ public class CallInfoState {
          null,
          null,
          WebRtcViewModel.GroupCallState.IDLE,
-         Collections.emptySet());
+         Collections.emptySet(),
+         OptionalLong.empty(),
+         null);
   }
 
   public CallInfoState(@NonNull CallInfoState toCopy) {
@@ -57,7 +63,9 @@ public class CallInfoState {
          toCopy.activePeer,
          toCopy.groupCall,
          toCopy.groupState,
-         toCopy.identityChangedRecipients);
+         toCopy.identityChangedRecipients,
+         toCopy.remoteDevicesCount,
+         toCopy.participantLimit);
   }
 
   public CallInfoState(@NonNull WebRtcViewModel.State callState,
@@ -68,7 +76,9 @@ public class CallInfoState {
                        @Nullable RemotePeer activePeer,
                        @Nullable GroupCall groupCall,
                        @NonNull WebRtcViewModel.GroupCallState groupState,
-                       @NonNull Set<RecipientId> identityChangedRecipients)
+                       @NonNull Set<RecipientId> identityChangedRecipients,
+                       @NonNull OptionalLong remoteDevicesCount,
+                       @Nullable Long participantLimit)
   {
     this.callState                 = callState;
     this.callRecipient             = callRecipient;
@@ -79,6 +89,8 @@ public class CallInfoState {
     this.groupCall                 = groupCall;
     this.groupState                = groupState;
     this.identityChangedRecipients = new HashSet<>(identityChangedRecipients);
+    this.remoteDevicesCount        = remoteDevicesCount;
+    this.participantLimit          = participantLimit;
   }
 
   public @NonNull Recipient getCallRecipient() {
@@ -135,5 +147,13 @@ public class CallInfoState {
 
   public @NonNull Set<RecipientId> getIdentityChangedRecipients() {
     return identityChangedRecipients;
+  }
+
+  public OptionalLong getRemoteDevicesCount() {
+    return remoteDevicesCount;
+  }
+
+  public @Nullable Long getParticipantLimit() {
+    return participantLimit;
   }
 }

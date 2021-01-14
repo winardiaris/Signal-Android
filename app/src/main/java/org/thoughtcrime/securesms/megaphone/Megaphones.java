@@ -92,6 +92,8 @@ public final class Megaphones {
       put(Event.CLIENT_DEPRECATED, SignalStore.misc().isClientDeprecated() ? ALWAYS : NEVER);
       put(Event.RESEARCH, shouldShowResearchMegaphone(context) ? ShowForDurationSchedule.showForDays(7) : NEVER);
       put(Event.DONATE, shouldShowDonateMegaphone(context) ? ShowForDurationSchedule.showForDays(7) : NEVER);
+      put(Event.GROUP_CALLING, shouldShowGroupCallingMegaphone() ? ALWAYS : NEVER);
+      put(Event.ONBOARDING, shouldShowOnboardingMegaphone(context) ? ALWAYS : NEVER);
     }};
   }
 
@@ -113,6 +115,10 @@ public final class Megaphones {
         return buildResearchMegaphone(context);
       case DONATE:
         return buildDonateMegaphone(context);
+      case GROUP_CALLING:
+        return buildGroupCallingMegaphone(context);
+      case ONBOARDING:
+        return buildOnboardingMegaphone();
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -239,6 +245,25 @@ public final class Megaphones {
                         .build();
   }
 
+  private static @NonNull Megaphone buildGroupCallingMegaphone(@NonNull Context context) {
+    return new Megaphone.Builder(Event.GROUP_CALLING, Megaphone.Style.BASIC)
+                        .disableSnooze()
+                        .setTitle(R.string.GroupCallingMegaphone__introducing_group_calls)
+                        .setBody(R.string.GroupCallingMegaphone__open_a_new_group_to_start)
+                        .setImage(R.drawable.ic_group_calls_megaphone)
+                        .setActionButton(android.R.string.ok, (megaphone, controller) -> {
+                          controller.onMegaphoneCompleted(megaphone.getEvent());
+                        })
+                        .setPriority(Megaphone.Priority.DEFAULT)
+                        .build();
+  }
+
+  private static @NonNull Megaphone buildOnboardingMegaphone() {
+    return new Megaphone.Builder(Event.ONBOARDING, Megaphone.Style.ONBOARDING)
+                        .setPriority(Megaphone.Priority.DEFAULT)
+                        .build();
+  }
+
   private static boolean shouldShowMessageRequestsMegaphone() {
     return Recipient.self().getProfileName() == ProfileName.EMPTY;
   }
@@ -255,6 +280,14 @@ public final class Megaphones {
     return TextSecurePreferences.wereLinkPreviewsEnabled(context) && !SignalStore.settings().isLinkPreviewsEnabled();
   }
 
+  private static boolean shouldShowGroupCallingMegaphone() {
+    return FeatureFlags.groupCalling();
+  }
+
+  private static boolean shouldShowOnboardingMegaphone(@NonNull Context context) {
+    return SignalStore.onboarding().hasOnboarding(context);
+  }
+
   public enum Event {
     REACTIONS("reactions"),
     PINS_FOR_ALL("pins_for_all"),
@@ -263,7 +296,9 @@ public final class Megaphones {
     LINK_PREVIEWS("link_previews"),
     CLIENT_DEPRECATED("client_deprecated"),
     RESEARCH("research"),
-    DONATE("donate");
+    DONATE("donate"),
+    GROUP_CALLING("group_calling"),
+    ONBOARDING("onboarding");
 
     private final String key;
 

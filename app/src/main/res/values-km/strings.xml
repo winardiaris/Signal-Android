@@ -77,6 +77,8 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">បញ្ហាការចាក់សំឡេង!</string>
   <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">ហាមឃាត់អ្នកប្រើនេះ</string>
+  <string name="BlockedUsersActivity__add_blocked_user">ហាមឃាត់អ្នកប្រើប្រាស់</string>
   <string name="BlockedUsersActivity__blocked_users_will">អ្នកប្រើប្រាស់ដែលបានហាមឃាត់ នឹងមិនអាចហៅ ឬផ្ញើសារមកអ្នកបានទេ។</string>
   <string name="BlockedUsersActivity__block">រារាំង</string>
   <string name="BlockedUsersActivity__unblock">បើកវិញ</string>
@@ -183,8 +185,8 @@
   <string name="ConversationItem_this_message_was_deleted">សារនេះត្រូវបានលុប។</string>
   <string name="ConversationItem_you_deleted_this_message">អ្នកបានលុបសារនេះ។</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">កំណត់ការប្រើប្រាស់សុវត្ថិភាពឡើងវិញ?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">នេះប្រហែលអាចជួយបាន បើអ្នកមានបញ្ហាកាណាល់កូដក្នុងការសន្ទនានេះ។ សាររបស់អ្នកនឹងត្រូវរក្សាទុក។</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">កំណត់ការប្រើប្រាស់សុវត្ថិភាពឡើងវិញ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">នេះប្រហែលអាចជួយបាន បើអ្នកមានបញ្ហាកាណាល់កូដក្នុងការសន្ទនានេះ។ សាររបស់អ្នកនឹងត្រូវរក្សាទុក។</string> -->
   <string name="ConversationActivity_reset">កំណត់ឡើងវិញ</string>
   <string name="ConversationActivity_add_attachment">ភ្ជាប់ឯកសារ</string>
   <string name="ConversationActivity_select_contact_info">ជ្រើសរើសព័ត៌មានលេខទំនាក់ទំនង</string>
@@ -364,6 +366,7 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">ឯកសារគ្មានឈ្មោះ</string>
   <!--DonateMegaphone-->
+  <!--GroupCallingMegaphone-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">បង្កើនប្រសិទ្ធភាពសម្រាប់ការបាត់ Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ឧបករណ៍នេះ មិនគាំទ្រ Play Services។ ចុច ដើម្បីបិទការបង្កើនប្រសិទ្ធិភាពប្រព័ន្ធថ្ម ដែលរារាំង Signal ពីទាញយកសារនានា នៅពេលឧបករណ៍ទុកចោល។</string>
@@ -416,7 +419,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_not_now">ពេលក្រោយ</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">ពេលក្រោយ</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">ទេ អរគុណ</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">ចាកចេញពីក្រុម?</string>
@@ -567,6 +570,9 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">តំណក្រុមនេះមិនសកម្មទេ</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">ដំឡើង Signal</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">អញ្ជើញមិត្តភក្តិ</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">បានជួបប្រទះកំហុសបណ្តាញ។</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add">បន្ថែម</string>
   <!--CropImageActivity-->
@@ -655,6 +661,9 @@
   <string name="Megaphones_verify_your_signal_pin">ផ្ទៀងផ្ទាត់លេខPIN Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">យើងនឹងសាកសួរអ្នកម្តងម្កាល ដើម្បីផ្ទៀងផ្ទាត់លេខកូដ PIN ថាអ្នកពិតជាចងចាំវា។</string>
   <string name="Megaphones_verify_pin">ផ្ទៀងផ្ទាត់លេខ PIN</string>
+  <string name="Megaphones_get_started">ចាប់ផ្តើម</string>
+  <string name="Megaphones_new_group">ក្រុមថ្មី</string>
+  <string name="Megaphones_invite_friends">អញ្ជើញមិត្តភក្តិ</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">ការហៅចេញSignal កំពុងដំណើរការ</string>
   <string name="NotificationBarManager__establishing_signal_call">ការហៅចេញ តាមSignal</string>
@@ -896,6 +905,8 @@
   <string name="WebRtcCallView__reconnecting">កំពុងតភ្ជាប់ម្តងទៀត…</string>
   <string name="WebRtcCallView__disconnected">បានផ្តាច់ការភ្ចាប់</string>
   <!--CallParticipantsListDialog-->
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__more_info">ព័ត៌មានបន្ថែម</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">ជ្រើសរើសប្រទេសរបស់អ្នក</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">អ្នកត្រូវបញ្ជាក់
@@ -952,6 +963,7 @@
   <string name="SearchFragment_header_conversations">ការសន្ទនា</string>
   <string name="SearchFragment_header_contacts">បញ្ជីទំនាក់ទំនង</string>
   <string name="SearchFragment_header_messages">សារ</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">បន្ថែមចូល បញ្ជីទំនាក់ទំនង</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">អញ្ជើញចូលប្រើSignal</string>
@@ -1083,7 +1095,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">សារដែលបានកាណាលកូដសម្ងាត់មិនត្រឹមត្រូវ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">សារដែលបានកាណាលកូដសម្ងាត់មិនត្រឹមត្រូវ</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">សារត្រូវបានកាណាល់កូដសម្ងាត់សម្រាប់កំឡុងពេលមិនប្រើប្រាស់</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">ការណាល់កូដសម្ងាត់សារMMS​ មិនត្រឹមត្រូវ</string>
@@ -1285,6 +1297,7 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">កំពុងផ្ទុក</string>
   <string name="ConversationUpdateItem_learn_more">សិក្សាបន្ថែម</string>
+  <string name="ConversationUpdateItem_invite_friends">អញ្ជើញមិត្តភក្តិ</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">លេង … ផ្អាក</string>
   <string name="audio_view__download_accessibility_description">ទាញយក</string>
@@ -1588,7 +1601,7 @@
   <string name="preferences__mmsc_password">ពាក្យសម្ងាត់ MMSC</string>
   <string name="preferences__sms_delivery_reports">របាយការណ៍បញ្ជូនSMS </string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ស្នើសុំរបាយការណ៍បញ្ជូនសម្រាប់សារSMSមួយៗដែលអ្នកផ្ញើ</string>
-  <string name="preferences__chats">ជជែក និងឯកសារ</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">ជជែក និងឯកសារ</string> -->
   <string name="preferences__storage">ឧបករណ៍ផ្ទុក</string>
   <string name="preferences__conversation_length_limit">ប្រវែងការសន្ទនាមានកំណត់</string>
   <string name="preferences__linked_devices">ភ្ជាប់ឧបករណ៍</string>
@@ -1610,6 +1623,7 @@
   <string name="preferences__typing_indicators">វាស់ការវាយអក្សរ</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ប្រសិនបើ ការបង្ហាញការវាយត្រូវបានបិទ អ្នកនឹងមិនអាចមើលឃើញការវាយបញ្ចូលរបស់អ្នកដទៃទេ។</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">ការស្នើសុំក្តារចុច ដើម្បីបិទការសិក្សាផ្ទាល់ខ្លួន</string>
+  <string name="preferences_app_protection__blocked_users">ហាមឃាត់អ្នកប្រើនេះ</string>
   <string name="preferences_chats__when_using_mobile_data">នៅពេលប្រើប្រាស់ទិន្នន័យទូរសព្ទ</string>
   <string name="preferences_chats__when_using_wifi">នៅពេលប្រើប្រាស់Wi-Fi</string>
   <string name="preferences_chats__when_roaming">នៅពេលរ៉ូមីង</string>
@@ -1695,7 +1709,6 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">ការសន្ទនាថ្មី</string>
   <string name="conversation_list_fragment__open_camera_description">បើកកាមេរ៉ា</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">រៀបរាប់ប្រអប់សំបុត្ររបស់អ្នក។ ចាប់ផ្តើមពីការផ្ញើសារទៅកាន់មិត្តភក្តិណាម្នាក់។</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">កំណត់ឡើងវិញការចូលប្រើប្រាស់សុវត្ថិភាព</string>
   <!--conversation_muted-->
@@ -1731,8 +1744,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">ចម្លងទៅ clipboard</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">ប្រៀបធៀបជាមួយ clipboard</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">ប្រើជាកម្មវិធីផ្ញើសារ</string>
-  <string name="reminder_header_sms_default_text">ចុច ដើម្បីដាក់ Signal ជាកម្មវិធី​ផ្ញើសាររបស់អ្នក​</string>
   <string name="reminder_header_sms_import_title">នាំចូលប្រព័ន្ធ SMS</string>
   <string name="reminder_header_sms_import_text">ចុចដើម្បីចម្លងសារក្នុងទូរសព្ទដៃរបស់អ្នកចូលទៅក្នុងមូលដ្ឋានទិន្នន័យដែលកាណាល់កូដសម្ងាត់របស់Signal។</string>
   <string name="reminder_header_push_title">បើកការផ្ញើសារ និងការហៅចេញតាមSignal</string>
@@ -2018,5 +2029,11 @@
   <string name="ReviewCard__remove_from_group">លុបចេញពីក្រុម</string>
   <string name="ReviewCard__block">រារាំង</string>
   <string name="ReviewCard__delete">លុប</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">តើអ្នកប្រាកដទេថា ចង់លុបគណនីរបស់អ្នក?</string>
+  <!--DeleteAccountCountryPickerFragment-->
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">រំលង</string>
   <!--EOF-->
 </resources>

@@ -181,8 +181,8 @@
   <string name="ConversationItem_this_message_was_deleted">এই বার্তাটি মুছে ফেলা হয়েছে।</string>
   <string name="ConversationItem_you_deleted_this_message">আপনি এই বার্তাটি মুছে দিয়েছিলেন। </string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">নিরাপদ সেশনটি পুনরায় সেট করবেন?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">আপনার এই কথোপকথনে এনক্রিপশন সংক্রান্ত সমস্যা থাকলে এটি সহায়তা করতে পারে। আপনার বার্তা সংরক্ষিত থাকবে।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">নিরাপদ সেশনটি পুনরায় সেট করবেন?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">আপনার এই কথোপকথনে এনক্রিপশন সংক্রান্ত সমস্যা থাকলে এটি সহায়তা করতে পারে। আপনার বার্তা সংরক্ষিত থাকবে।</string> -->
   <string name="ConversationActivity_reset">রিসেট </string>
   <string name="ConversationActivity_add_attachment">সংযুক্তি যোগ করুন</string>
   <string name="ConversationActivity_select_contact_info">পরিচিতির তথ্য নির্বাচন করুন</string>
@@ -1038,7 +1038,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">খারাপ এনক্রিপ্ট করা বার্তা</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">খারাপ এনক্রিপ্ট করা বার্তা</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">অ-বিদ্যমান সেশনের জন্য বার্তা এনক্রিপ্ট করা হয়েছে</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">খারাপ এনক্রিপ্ট করা এমএমএস বার্তা</string>
@@ -1541,7 +1541,7 @@
   <string name="preferences__mmsc_password">এমএমএসসি পাসওয়ার্ড</string>
   <string name="preferences__sms_delivery_reports">এসএমএস বিতরণ রিপোর্ট</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">আপনার প্রেরিত প্রতিটি এসএমএস বার্তার জন্য একটি বিতরণ রিপোর্টের জন্য অনুরোধ করুন</string>
-  <string name="preferences__chats">চ্যাট আর মিডিয়া</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">চ্যাট আর মিডিয়া</string> -->
   <string name="preferences__storage">স্টোরেজ</string>
   <string name="preferences__conversation_length_limit">কথোপকথন দৈর্ঘ্য সীমা</string>
   <string name="preferences__linked_devices">সংযুক্ত ডিভাইস সমূহ</string>
@@ -1648,7 +1648,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">নতুন কথোপকথন</string>
   <string name="conversation_list_fragment__open_camera_description">ক্যামেরা চালু করুন</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">আপনার হোমে ইনবক্স বিষয়ে কিছু লেখার জন্য কিছু দিন। একজন বন্ধুকে বার্তা দিয়ে শুরু করুন।</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">আপনার হোমে ইনবক্স বিষয়ে কিছু লেখার জন্য কিছু দিন। একজন বন্ধুকে বার্তা দিয়ে শুরু করুন।</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">সুরক্ষিত সেশনটি পুনরায় সেট করুন</string>
   <!--conversation_muted-->
@@ -1684,8 +1684,8 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">ক্লিপবোর্ডে অনুলিপি করুন</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">ক্লিপবোর্ডের সাথে তুলনা করুন</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">ডিফল্ট এসএমএস অ্যাপ হিসাবে ব্যবহার করুন</string>
-  <string name="reminder_header_sms_default_text">Signal কে আপনার ডিফল্ট এসএমএস অ্যাপ করতে আলতো চাপুন।</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">ডিফল্ট এসএমএস অ্যাপ হিসাবে ব্যবহার করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Signal কে আপনার ডিফল্ট এসএমএস অ্যাপ করতে আলতো চাপুন।</string> -->
   <string name="reminder_header_sms_import_title">সিস্টেম এসএমএস আমদানি করুন</string>
   <string name="reminder_header_sms_import_text">Signal এর এনক্রিপ্ট করা ডাটাবেস এর মধ্যে আপনার ফোনের এসএমএস বার্তাগুলি অনুলিপি করতে আলতো চাপুন।</string>
   <string name="reminder_header_push_title"> Signal বার্তা এবং কল সমূহ সক্ষম করুন</string>

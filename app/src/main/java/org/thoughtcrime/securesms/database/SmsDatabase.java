@@ -53,7 +53,6 @@ import org.thoughtcrime.securesms.revealable.ViewOnceExpirationInfo;
 import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
@@ -80,7 +79,6 @@ import java.util.UUID;
  *
  * @author Moxie Marlinspike
  */
-@Trace
 public class SmsDatabase extends MessageDatabase {
 
   private static final String TAG = SmsDatabase.class.getSimpleName();
@@ -688,23 +686,17 @@ public class SmsDatabase extends MessageDatabase {
   public void insertOrUpdateGroupCall(@NonNull RecipientId groupRecipientId,
                                       @NonNull RecipientId sender,
                                       long timestamp,
-                                      @Nullable String messageGroupCallEraId,
                                       @Nullable String peekGroupCallEraId,
                                       @NonNull Collection<UUID> peekJoinedUuids,
                                       boolean isCallFull)
   {
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
-
-    long threadId;
+    SQLiteDatabase db                      = databaseHelper.getWritableDatabase();
+    Recipient      recipient               = Recipient.resolved(groupRecipientId);
+    long           threadId                = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+    boolean        peerEraIdSameAsPrevious = updatePreviousGroupCall(threadId, peekGroupCallEraId, peekJoinedUuids, isCallFull);
 
     try {
       db.beginTransaction();
-
-      Recipient recipient = Recipient.resolved(groupRecipientId);
-
-      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
-
-      boolean peerEraIdSameAsPrevious = updatePreviousGroupCall(threadId, peekGroupCallEraId, peekJoinedUuids, isCallFull);
 
       if (!peerEraIdSameAsPrevious && !Util.isEmpty(peekGroupCallEraId)) {
         Recipient self     = Recipient.self();
@@ -748,10 +740,88 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public void insertOrUpdateGroupCall(@NonNull RecipientId groupRecipientId,
+                                      @NonNull RecipientId sender,
+                                      long timestamp,
+                                      @Nullable String messageGroupCallEraId)
+  {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    long threadId;
+
+    try {
+      db.beginTransaction();
+
+      Recipient recipient = Recipient.resolved(groupRecipientId);
+
+      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+
+      String   where     = TYPE + " = ? AND " + THREAD_ID + " = ?";
+      String[] args      = SqlUtil.buildArgs(Types.GROUP_CALL_TYPE, threadId);
+      boolean  sameEraId = false;
+
+      try (Reader reader = new Reader(db.query(TABLE_NAME, MESSAGE_PROJECTION, where, args, null, null, DATE_RECEIVED + " DESC", "1"))) {
+        MessageRecord record = reader.getNext();
+        if (record != null) {
+          GroupCallUpdateDetails groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(record.getBody());
+
+          sameEraId = groupCallUpdateDetails.getEraId().equals(messageGroupCallEraId) && !Util.isEmpty(messageGroupCallEraId);
+
+          if (!sameEraId) {
+            String body = GroupCallUpdateDetailsUtil.createUpdatedBody(groupCallUpdateDetails, Collections.emptyList(), false);
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(BODY, body);
+
+            db.update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(record.getId()));
+          }
+        }
+      }
+
+      if (!sameEraId && !Util.isEmpty(messageGroupCallEraId)) {
+        byte[] updateDetails = GroupCallUpdateDetails.newBuilder()
+                                                     .setEraId(Util.emptyIfNull(messageGroupCallEraId))
+                                                     .setStartedCallUuid(Recipient.resolved(sender).requireUuid().toString())
+                                                     .setStartedCallTimestamp(timestamp)
+                                                     .addAllInCallUuids(Collections.emptyList())
+                                                     .setIsCallFull(false)
+                                                     .build()
+                                                     .toByteArray();
+
+        String body = Base64.encodeBytes(updateDetails);
+
+        ContentValues values = new ContentValues();
+        values.put(RECIPIENT_ID, sender.serialize());
+        values.put(ADDRESS_DEVICE_ID, 1);
+        values.put(DATE_RECEIVED, timestamp);
+        values.put(DATE_SENT, timestamp);
+        values.put(READ, 0);
+        values.put(BODY, body);
+        values.put(TYPE, Types.GROUP_CALL_TYPE);
+        values.put(THREAD_ID, threadId);
+
+        db.insert(TABLE_NAME, null, values);
+
+        DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
+      }
+
+      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    notifyConversationListeners(threadId);
+    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
+  }
+
+  @Override
   public boolean updatePreviousGroupCall(long threadId, @Nullable String peekGroupCallEraId, @NonNull Collection<UUID> peekJoinedUuids, boolean isCallFull) {
-    SQLiteDatabase db    = databaseHelper.getWritableDatabase();
-    String         where = TYPE + " = ? AND " + THREAD_ID + " = ?";
-    String[]       args  = SqlUtil.buildArgs(Types.GROUP_CALL_TYPE, threadId);
+    SQLiteDatabase db        = databaseHelper.getWritableDatabase();
+    String         where     = TYPE + " = ? AND " + THREAD_ID + " = ?";
+    String[]       args      = SqlUtil.buildArgs(Types.GROUP_CALL_TYPE, threadId);
+    boolean        sameEraId = false;
 
     try (Reader reader = new Reader(db.query(TABLE_NAME, MESSAGE_PROJECTION, where, args, null, null, DATE_RECEIVED + " DESC", "1"))) {
       MessageRecord record = reader.getNext();
@@ -760,8 +830,9 @@ public class SmsDatabase extends MessageDatabase {
       }
 
       GroupCallUpdateDetails groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(record.getBody());
-      boolean                sameEraId              = groupCallUpdateDetails.getEraId().equals(peekGroupCallEraId) && !Util.isEmpty(peekGroupCallEraId);
       boolean                containsSelf           = peekJoinedUuids.contains(Recipient.self().requireUuid());
+
+      sameEraId = groupCallUpdateDetails.getEraId().equals(peekGroupCallEraId) && !Util.isEmpty(peekGroupCallEraId);
 
       List<String> inCallUuids = sameEraId ? Stream.of(peekJoinedUuids).map(UUID::toString).toList()
                                            : Collections.emptyList();
@@ -776,9 +847,11 @@ public class SmsDatabase extends MessageDatabase {
       }
 
       db.update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(record.getId()));
-
-      return sameEraId;
     }
+
+    notifyConversationListeners(threadId);
+
+    return sameEraId;
   }
 
   private @NonNull Pair<Long, Long> insertCallLog(@NonNull RecipientId recipientId, long type, boolean unread, long timestamp) {
@@ -965,7 +1038,7 @@ public class SmsDatabase extends MessageDatabase {
     if (groupRecipient == null) threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
     else                        threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
 
-    ContentValues values = new ContentValues(6);
+    ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, message.getSender().serialize());
     values.put(ADDRESS_DEVICE_ID,  message.getSenderDeviceId());
     values.put(DATE_RECEIVED, System.currentTimeMillis());
@@ -1018,6 +1091,36 @@ public class SmsDatabase extends MessageDatabase {
   @Override
   public Optional<InsertResult> insertMessageInbox(IncomingTextMessage message) {
     return insertMessageInbox(message, Types.BASE_INBOX_TYPE);
+  }
+
+  @Override
+  public @NonNull InsertResult insertDecryptionFailedMessage(@NonNull RecipientId recipientId, long senderDeviceId, long sentTimestamp) {
+    SQLiteDatabase db       = databaseHelper.getWritableDatabase();
+    long           threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.resolved(recipientId));
+    long           type     = Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT;
+
+    type = type & (Types.TOTAL_MASK - Types.ENCRYPTION_MASK) | Types.ENCRYPTION_REMOTE_FAILED_BIT;
+
+    ContentValues values = new ContentValues();
+    values.put(RECIPIENT_ID, recipientId.serialize());
+    values.put(ADDRESS_DEVICE_ID,  senderDeviceId);
+    values.put(DATE_RECEIVED, System.currentTimeMillis());
+    values.put(DATE_SENT, sentTimestamp);
+    values.put(DATE_SERVER, -1);
+    values.put(READ, 0);
+    values.put(TYPE, type);
+    values.put(THREAD_ID, threadId);
+
+    long messageId = db.insert(TABLE_NAME, null, values);
+
+    DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
+    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+
+    notifyConversationListeners(threadId);
+
+    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
+
+    return new InsertResult(messageId, threadId);
   }
 
   @Override

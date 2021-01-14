@@ -3,12 +3,13 @@ package org.thoughtcrime.securesms.events;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.OptionalLong;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.ringrtc.CameraState;
+import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 
 import java.util.List;
 import java.util.Set;
@@ -44,6 +45,14 @@ public class WebRtcViewModel {
              this == RECIPIENT_UNAVAILABLE ||
              this == NO_SUCH_USER          ||
              this == UNTRUSTED_IDENTITY;
+    }
+
+    public boolean isPreJoinOrNetworkUnavailable() {
+      return this == CALL_PRE_JOIN || this == NETWORK_FAILURE;
+    }
+
+    public boolean isPassedPreJoin() {
+      return this.ordinal() > CALL_PRE_JOIN.ordinal();
     }
   }
 
@@ -94,29 +103,24 @@ public class WebRtcViewModel {
   private final CallParticipant       localParticipant;
   private final List<CallParticipant> remoteParticipants;
   private final Set<RecipientId>      identityChangedRecipients;
+  private final OptionalLong          remoteDevicesCount;
+  private final Long                  participantLimit;
 
-  public WebRtcViewModel(@NonNull State state,
-                         @NonNull GroupCallState groupState,
-                         @NonNull Recipient recipient,
-                         @NonNull CameraState localCameraState,
-                         @Nullable BroadcastVideoSink localSink,
-                         boolean isBluetoothAvailable,
-                         boolean isMicrophoneEnabled,
-                         boolean isRemoteVideoOffer,
-                         long callConnectedTime,
-                         @NonNull List<CallParticipant> remoteParticipants,
-                         @NonNull Set<RecipientId> identityChangedRecipients)
-  {
-    this.state                     = state;
-    this.groupState                = groupState;
-    this.recipient                 = recipient;
-    this.isBluetoothAvailable      = isBluetoothAvailable;
-    this.isRemoteVideoOffer        = isRemoteVideoOffer;
-    this.callConnectedTime         = callConnectedTime;
-    this.remoteParticipants        = remoteParticipants;
-    this.identityChangedRecipients = identityChangedRecipients;
-
-    localParticipant = CallParticipant.createLocal(localCameraState, localSink != null ? localSink : new BroadcastVideoSink(null), isMicrophoneEnabled);
+  public WebRtcViewModel(@NonNull WebRtcServiceState state) {
+    this.state                     = state.getCallInfoState().getCallState();
+    this.groupState                = state.getCallInfoState().getGroupCallState();
+    this.recipient                 = state.getCallInfoState().getCallRecipient();
+    this.isRemoteVideoOffer        = state.getCallSetupState().isRemoteVideoOffer();
+    this.isBluetoothAvailable      = state.getLocalDeviceState().isBluetoothAvailable();
+    this.remoteParticipants        = state.getCallInfoState().getRemoteCallParticipants();
+    this.identityChangedRecipients = state.getCallInfoState().getIdentityChangedRecipients();
+    this.callConnectedTime         = state.getCallInfoState().getCallConnectedTime();
+    this.remoteDevicesCount        = state.getCallInfoState().getRemoteDevicesCount();
+    this.participantLimit          = state.getCallInfoState().getParticipantLimit();
+    this.localParticipant          = CallParticipant.createLocal(state.getLocalDeviceState().getCameraState(),
+                                                                 state.getVideoState().getLocalSink() != null ? state.getVideoState().getLocalSink()
+                                                                                                              : new BroadcastVideoSink(null),
+                                                                 state.getLocalDeviceState().isMicrophoneEnabled());
   }
 
   public @NonNull State getState() {
@@ -159,6 +163,14 @@ public class WebRtcViewModel {
     return identityChangedRecipients;
   }
 
+  public OptionalLong getRemoteDevicesCount() {
+    return remoteDevicesCount;
+  }
+
+  public @Nullable Long getParticipantLimit() {
+    return participantLimit;
+  }
+
   @Override
   public @NonNull String toString() {
     return "WebRtcViewModel{" +
@@ -170,6 +182,8 @@ public class WebRtcViewModel {
            ", localParticipant=" + localParticipant +
            ", remoteParticipants=" + remoteParticipants +
            ", identityChangedRecipients=" + identityChangedRecipients +
+           ", remoteDevicesCount=" + remoteDevicesCount +
+           ", participantLimit=" + participantLimit +
            '}';
   }
 }

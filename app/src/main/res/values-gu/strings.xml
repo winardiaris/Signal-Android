@@ -158,8 +158,8 @@
   <string name="ConversationItem_pending"> બાકી</string>
   <string name="ConversationItem_this_message_was_deleted">આ મેસેજ કાઢી નાખ્યો હતો.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">સુરક્ષિત સત્ર ફરીથી સેટ કરો?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">જો તમને આ સંવાદમાં એન્ક્રિપ્શન સમસ્યા આવી રહી હોય તો આ મદદ કરી શકે છે. તમારા મેસેજ રાખવામાં આવશે.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">સુરક્ષિત સત્ર ફરીથી સેટ કરો?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">જો તમને આ સંવાદમાં એન્ક્રિપ્શન સમસ્યા આવી રહી હોય તો આ મદદ કરી શકે છે. તમારા મેસેજ રાખવામાં આવશે.</string> -->
   <string name="ConversationActivity_reset">ફરીથી સેટ કરો</string>
   <string name="ConversationActivity_add_attachment">જોડાણ ઉમેરો </string>
   <string name="ConversationActivity_select_contact_info">સંપર્ક માહિતી પસંદ કરો</string>
@@ -822,7 +822,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">ખરાબ એન્ક્રિપ્ટેડ મેસેજ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">ખરાબ એન્ક્રિપ્ટેડ મેસેજ</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">મેસેજ અસ્તિત્વમાં નથી તે સત્ર માટે એન્ક્રિપ્ટ થયેલ છે</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">ખરાબ એન્ક્રિપ્ટેડ MMS મેસેજ</string>
@@ -1294,7 +1294,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">તમે મોકલો છો તે દરેક SMS મેસેજ માટે ડિલિવરી રિપોર્ટની વિનંતી કરો</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">એકવાર સંવાદ ની ઉલ્લેખિત લંબાઈથી વધુ થઈ જાય ત્યારે જૂના મેસેજ આપમેળે કાઢી નાખો</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">જૂના મેસેજ કાઢી નાખો</string> -->
-  <string name="preferences__chats">ચેટ અને મીડિયા</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">ચેટ અને મીડિયા</string> -->
   <string name="preferences__storage">સ્ટોરેજ</string>
   <string name="preferences__conversation_length_limit">સંવાદ ની લંબાઈ મર્યાદા</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">બધા સંવાદ ને હવે ટ્રિમ કરો</string> -->
@@ -1398,7 +1398,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">નવો સંવાદ</string>
   <string name="conversation_list_fragment__open_camera_description">કેમેરો ખોલો </string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">તમારા ઈનબોક્સ વિશે ઘર લખવા માટે કંઈક આપો. કોઈ મિત્રને મેસેજ કરીને પ્રારંભ કરો.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">તમારા ઈનબોક્સ વિશે ઘર લખવા માટે કંઈક આપો. કોઈ મિત્રને મેસેજ કરીને પ્રારંભ કરો.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">સુરક્ષિત સત્ર ફરીથી સેટ કરો</string>
   <!--conversation_muted-->
@@ -1440,8 +1440,8 @@
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">તમારું Signal નું વર્ઝન આજે સમાપ્ત થશે. સૌથી તાજેતરના વર્ઝન પર અપડેટ કરવા માટે ટેપ કરો.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">તમારું Signal નું વર્ઝન સમાપ્ત થઈ ગયું છે!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">મેસેજ હવે સફળતાપૂર્વક મોકલશે નહીં. સૌથી તાજેતરના વર્ઝન પર અપડેટ કરવા માટે ટેપ કરો.</string> -->
-  <string name="reminder_header_sms_default_title">ડિફોલ્ટ SMS એપ્લિકેશન તરીકે ઉપયોગ કરો</string>
-  <string name="reminder_header_sms_default_text">તમારી ડિફોલ્ટ SMS એપ્લિકેશન Signal બનાવવા માટે ટેપ કરો.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">ડિફોલ્ટ SMS એપ્લિકેશન તરીકે ઉપયોગ કરો</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">તમારી ડિફોલ્ટ SMS એપ્લિકેશન Signal બનાવવા માટે ટેપ કરો.</string> -->
   <string name="reminder_header_sms_import_title">સિસ્ટમ SMS ઇમ્પોર્ટ કરો</string>
   <string name="reminder_header_sms_import_text">તમારા ફોનના SMS મેસેજ ને Signal ના એન્ક્રિપ્ટેડ ડેટાબેસમાં નકલ કરવા માટે ટેપ કરો.</string>
   <string name="reminder_header_push_title">Signal મેસેજ અને કૉલ્સ સક્ષમ કરો</string>

@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">Aquest missatge s\'ha suprimit.</string>
   <string name="ConversationItem_you_deleted_this_message">Heu suprimit aquest missatge.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Voleu restablir la sessió segura?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Això pot ajudar si teniu problemes d\'encriptació en aquesta conversa. Els missatges es mantindran.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Voleu restablir la sessió segura?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Això pot ajudar si teniu problemes d\'encriptació en aquesta conversa. Els missatges es mantindran.</string> -->
   <string name="ConversationActivity_reset">Restableix</string>
   <string name="ConversationActivity_add_attachment">Afegeix un adjunt</string>
   <string name="ConversationActivity_select_contact_info">Seleccioneu informació del contacte</string>
@@ -208,6 +208,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">El destinatari no és una adreça electrònica o SMS vàlid!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">El missatge és buit.</string>
   <string name="ConversationActivity_group_members">Membres del grup</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Toqueu aquí per iniciar una trucada de grup</string>
   <string name="ConversationActivity_invalid_recipient">Destinatari no vàlid.</string>
   <string name="ConversationActivity_added_to_home_screen">S\'ha afegit a la pantalla d\'inici.</string>
   <string name="ConversationActivity_calls_not_supported">Trucades no compatibles</string>
@@ -256,6 +257,8 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Per trucar a %1$s, el Signal necessita accés al micròfon.</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Per trucar a %1$s, el Signal necessita accés al micròfon i a la càmera.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Ara hi ha més opcions a la configuració del grup.</string>
+  <string name="ConversationActivity_join">Afegeix-m\'hi</string>
+  <string name="ConversationActivity_full">Ple</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d missatge sense llegir</item>
@@ -416,6 +419,9 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">El Signal funciona gràcies a persones com vosaltres. Demostreu-hi el vostre suport avui!</string>
   <string name="DonateMegaphone_donate">Feu una donació</string>
   <string name="DonateMegaphone_no_thanks">No, gràcies</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">S\'introdueixen les trucades de grup</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Obriu un grup nou per iniciar una trucada de grup encriptada</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimitza per a la no presència dels Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">El dispositiu no és compatible amb Play Services. Toqueu per desactivar les optimitzacions de la bateria que impedeixen que el Signal rebi missatges quan estigui inactiu.</string>
@@ -476,7 +482,7 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Què són els grups nous?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Els grups nous tenen funcions com ara @mencions i administradors de grups, i admetran més funcions en el futur.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">S\'han conservat tot l\'historial de missatges i el contingut anteriors a l\'actualització.</string>
-  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Haureu d\'acceptar una invitació per a unir-vos al grup de nou, i no rebreu missatges del grup fins que ho feu.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Haureu d\'acceptar una invitació per tornar-vos a afegir al grup i no en rebreu missatges fins que no ho feu.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Aquest membre haurà d\'acceptar una invitació per tornar a afegir-se a aquest grup i no en rebrà missatges fins que no l\'accepti:</item>
     <item quantity="other">Aquests membres hauran d\'acceptar una invitació per tornar a afegir-se a aquest grup i no en rebran missatges fins que no l\'acceptin:</item>
@@ -513,7 +519,7 @@
     <item quantity="one">Afegeix-hi un membre</item>
     <item quantity="other">Afegeix-hi membres</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ara no</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">No, gràcies.</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Voleu afegir-hi un membre?</item>
@@ -593,6 +599,7 @@
   <string name="AddGroupDetailsFragment__create_group">Crear un grup</string>
   <string name="AddGroupDetailsFragment__create">Crea</string>
   <string name="AddGroupDetailsFragment__members">Membres</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Després de crear el grup podeu afegir-hi o convidar-hi amistats.</string>
   <string name="AddGroupDetailsFragment__group_name_required">Nom de grup (necessari)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Nom de grup (opcional)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Aquest camp és necessari.</string>
@@ -666,7 +673,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Aquest és un grup de llegat. Per accedir a funcions noves com ara les @mencions i als administradors,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Aquest grup de llegat no es pot actualitzar a un grup nou perquè és massa gros. La mida màxima d\'un grup és %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">actualitzeu aquest grup.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Aquest és un grup d\'MMS no segur. Per conversar privadament i accedir a funcions com ara els noms de grup, convideu els contactes al Signal.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Aquest és un grup d\'MMS no segur. Per conversar privadament, convideu els contactes al Signal.</string>
   <string name="ManageGroupActivity_invite_now">Convida ara</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notifica\'m les mencions</string>
@@ -761,6 +768,15 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualitza el Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Un o més dels vostres dispositius enllaçats executen una versió del Signal que no admet enllaços de grup. Actualitzeu el Signal dels dispositius enllaçats per afegir-vos a aquest grup.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">L\'enllaç de grup no és vàlid.</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Convideu-hi amistats</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Compartiu un enllaç amb les amistats perquè s\'hi afegeixin ràpidament.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Habilita i comparteix l\'enllaç</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Compateix l\'enllaç</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">No s\'ha pogut habilitar l\'enllaç del grup. Torneu-ho a intentar més tard.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Hi ha hagut un error de xarxa.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">No teniu permís per a habilitar l\'enllaç del grup. Demaneu-ho a un administrador.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Actualment no sou membre del grup.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Voleu afegir %1$s al grup?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Voleu rebutjar la sol·licitud de %1$s?</string>
@@ -858,6 +874,10 @@
   <string name="Megaphones_verify_your_signal_pin">Verifiqueu el PIN del Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">De tant en tant us demanarem de verificar el PIN perquè el recordeu.</string>
   <string name="Megaphones_verify_pin">Verifica el PIN</string>
+  <string name="Megaphones_get_started">Comenceu</string>
+  <string name="Megaphones_new_group">Grup nou</string>
+  <string name="Megaphones_invite_friends">Convideu-hi amistats</string>
+  <string name="Megaphones_use_sms">Usa SMS</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Trucada del Signal en curs</string>
   <string name="NotificationBarManager__establishing_signal_call">S\'estableix la trucada del Signal</string>
@@ -928,6 +948,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Heu creat el grup.</string>
   <string name="MessageRecord_group_updated">Grup actualitzat</string>
+  <string name="MessageRecord_invite_friends_to_this_group">Convideu amistats a aquest grup amb un enllaç de grup.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Hi heu afegit %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s ha afegit %2$s.</string>
@@ -1206,7 +1227,7 @@
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">El número que heu marcat no pot rebre trucades de veu segures!</string>
   <string name="RedPhone_got_it">Entesos</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Toqueu aquí per a activar el vídeo</string>
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Toqueu aquí per activar el vídeo</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Per trucar a %1$s, el Signal necessita accés a la càmera.</string>
   <string name="WebRtcCallActivity__signal_s">Trucada del Signal: %1$s</string>
   <string name="WebRtcCallActivity__calling">Es truca…</string>
@@ -1216,6 +1237,8 @@
   <string name="WebRtcCallView__signal_video_call">Trucada de vídeo del Signal…</string>
   <string name="WebRtcCallView__start_call">Inicia una trucada</string>
   <string name="WebRtcCallView__join_call">Afegeix-me a la trucada</string>
+  <string name="WebRtcCallView__call_is_full">La trucada és plena</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">S\'ha assolit el nombre màxim de %1$d participants per a aquesta trucada. Torneu-ho a provar més tard.</string>
   <string name="WebRtcCallView__s_group_call">Trucada de grup \"%1$s\"</string>
   <string name="WebRtcCallView__view_participants_list">Mostra els participants</string>
   <string name="WebRtcCallView__your_video_is_off">El vídeo està desactivat.</string>
@@ -1235,6 +1258,13 @@
     <item quantity="one">En aquesta trucada · %1$d persona</item>
     <item quantity="other">En aquesta trucada · %1$d persones</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s està blocat.</string>
+  <string name="CallParticipantView__more_info">Més informació</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">No en rebreu àudio ni vídeo ni rebran el vostre.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">No es pot rebre ni àudio ni vídeo de %1$s.</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">No es pot rebre ni àudio ni vídeo de %1$s.</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Això pot ser degut al fet que no han verificat el canvi del vostre número de seguretat, hi ha un problema al seu dispositiu o us han blocat.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Seleccioneu el país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Heu d\'especificar el
@@ -1270,8 +1300,10 @@ especificat (%s) no és vàlid.</string>
   <string name="RegistrationActivity_continue_last_attempt">Continua (darrer intent!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Porteu a sobre la privadesa.\nSigueu vosaltres mateixos a cada missatge.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Per començar, marqueu el número de telèfon.</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Marqueu el número de telèfon.</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Rebreu un codi de verificació. La vostra operadora podria aplicar algun càrrec.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Marqueu el codi que hem enviat a %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Assegureu-vos que el telèfon té cobertura per a rebre missatges SMS o trucades.</string>
   <string name="RegistrationActivity_phone_number_description">Número de telèfon</string>
   <string name="RegistrationActivity_country_code_description">Codi de país</string>
   <string name="RegistrationActivity_call">Truca</string>
@@ -1293,6 +1325,7 @@ especificat (%s) no és vàlid.</string>
   <string name="SearchFragment_header_conversations">Converses</string>
   <string name="SearchFragment_header_contacts">Contactes</string>
   <string name="SearchFragment_header_messages">Missatges</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Afegeix als contactes</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Convida al Signal</string>
@@ -1416,6 +1449,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="UsernameEditFragment_username_is_invalid">El nom d\'usuari no és vàlid.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Els noms d\'usuari han de tenir entre %1$d i %2$d caràcters.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Els noms d’usuari a Signal són opcionals. Si trieu crear un nom d’usuari, altres usuaris del Signal us podran trobar per aquest nom i contactar-vos sense saber el vostre número de telèfon.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d contacte és al Signal!</item>
+    <item quantity="other">%dcontactes són al Signal!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">El vostre contacte està fent servir una versió antiga del Signal. Demaneu-li que l\'actualitzi abans de verificar el número de seguretat.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">El vostre contacte està fent servir una versió nova del Signal amb un format del codi QR no compatible. Actualitzeu-la per comparar-lo.</string>
@@ -1430,7 +1467,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Missatge mal encriptat</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Missatge mal encriptat</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Missatge encriptat per a una sessió que no existeix</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Missatge MMS mal encriptat</string>
@@ -1536,12 +1573,14 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="WebRtcCallActivity__answered_on_a_linked_device">S\'ha respost en un dispositiu enllaçat.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">S\'ha rebutjat en un dispositiu enllaçat.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Ocupat/da en un dispositiu enllaçat</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Algú s\'ha afegit a aquesta trucada amb un número de seguretat que ha canviat.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">El número de seguretat de la conversa amb %1$s ha canviat. Això pot significar o bé que algú està provant d\'interceptar la comunicació, o bé que %2$s ha reinstal·lat el Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Potser voleu verificar el número de seguretat amb aquest contacte.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Número de seguretat nou</string>
   <string name="WebRtcCallScreen_accept">Accepta</string>
   <string name="WebRtcCallScreen_end_call">Acaba la trucada</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">Feu lliscar el dit amunt per canviar-ne la vista.</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Rebutja</string>
   <string name="WebRtcCallScreen__answer">Respon</string>
@@ -1652,6 +1691,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ConversationUpdateItem_learn_more">Més informació</string>
   <string name="ConversationUpdateItem_join_call">Afegeix-me a la trucada</string>
   <string name="ConversationUpdateItem_return_to_call">Torna a la trucada</string>
+  <string name="ConversationUpdateItem_call_is_full">La trucada és plena</string>
+  <string name="ConversationUpdateItem_invite_friends">Convideu-hi amistats</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Reprodueix… Pausa</string>
   <string name="audio_view__download_accessibility_description">Baixa</string>
@@ -1670,6 +1711,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="safety_number_change_dialog__safety_number_changes">Canvis en el número de seguretat</string>
   <string name="safety_number_change_dialog__send_anyway">Envia\'l tanmateix</string>
   <string name="safety_number_change_dialog__call_anyway">Truca-li tanmateix</string>
+  <string name="safety_number_change_dialog__join_call">Afegeix-me a la trucada</string>
+  <string name="safety_number_change_dialog__continue_call">Continua la trucada</string>
+  <string name="safety_number_change_dialog__leave_call">Surt de la trucada</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Aquesta gent podria haver reinstallar o dispositius canviats. Comproveu vostre número de seguretat amb ells, per assegurar la privadesa.</string>
   <string name="safety_number_change_dialog__view">Mostra</string>
   <string name="safety_number_change_dialog__previous_verified">Verificat prèviament</string>
@@ -1816,8 +1860,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Comparteix el número de seguretat</string>
   <!--webrtc_answer_decline_button-->
-  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Llisqueu amunt per a respondre</string>
-  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Llisqueu avall per a rebutjar</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Llisqueu amunt per respondre</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Llisqueu avall per rebutjar-la</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Certs problemes necessiten la vostra atenció.</string>
   <string name="message_details_header__sent">Enviat</string>
@@ -1973,7 +2017,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__mmsc_password">Contrasenya de MMSC</string>
   <string name="preferences__sms_delivery_reports">Informes de lliurament d\'SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demana un informe de lliurament per cada missatge SMS que envieu.</string>
-  <string name="preferences__chats">Converses i multimèdia</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Converses i multimèdia</string> -->
   <string name="preferences__storage">Emmagatzematge</string>
   <string name="preferences__conversation_length_limit">Límit de la mida de la conversa</string>
   <string name="preferences__keep_messages">Mantén els missatges</string>
@@ -1994,6 +2038,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__advanced_pin_settings">Configuració avançada del PIN</string>
   <string name="preferences__free_private_messages_and_calls">Missatges i trucades privades gratuïtes per als usuaris del Signal </string>
   <string name="preferences__submit_debug_log">Envia un registre de depuració</string>
+  <string name="preferences__delete_account">Suprimeix el compte</string>
   <string name="preferences__support_wifi_calling">Compatibilitat «Trucada per WiFi»</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activeu-ho si el dispositiu fa servir SMS / MMS per WiFi (feu-ho només si la «Trucada per WiFi» està activada al dispositiu)</string>
   <string name="preferences__incognito_keyboard">Teclat d\'incògnit</string>
@@ -2055,7 +2100,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activa el remitent segellat per a missatges rebuts de persones que no teniu als contactes o de persones amb qui no heu compartit el vostre perfil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Més informació</string>
   <string name="preferences_notifications__mentions">Mencions</string>
-  <string name="preferences_notifications__notify_me">Notifica-m\'ho</string>
+  <string name="preferences_notifications__notify_me">Notes personals</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Rebeu notificacions quan us mencionin en converses silenciades.</string>
   <string name="preferences_setup_a_username">Estableix un nom d\'usuari</string>
   <string name="configurable_single_select__customize_option">Opció de personalització</string>
@@ -2113,7 +2158,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Conversa nova</string>
   <string name="conversation_list_fragment__open_camera_description">Obre la càmera</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Proporcioneu alguna cosa a la safata d\'entrada perquè us escriguin. Comenceu enviant un missatge a alguna amistat.</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Encara no teniu cap conversa.\nComenceu enviant un missatge a algú.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Restableix la sessió segura</string>
   <!--conversation_muted-->
@@ -2150,8 +2195,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copia al porta-retalls</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Compara amb el porta-retalls</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Usa-la com a aplicació d\'SMS predeterminada</string>
-  <string name="reminder_header_sms_default_text">Premeu per establir el Signal com a aplicació predeterminada per a SMS.</string>
   <string name="reminder_header_sms_import_title">Importació dels SMS del sistema</string>
   <string name="reminder_header_sms_import_text">Premeu per copiar els missatges SMS del telèfon a la base de dades encriptada del Signal.</string>
   <string name="reminder_header_push_title">Activa els missatges i les trucades del Signal</string>
@@ -2160,7 +2203,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="reminder_header_invite_text">Eleva la conversa amb %1$s al nivell següent.</string>
   <string name="reminder_header_share_title">Convideu-hi amistats!</string>
   <string name="reminder_header_share_text">Com més amistats usin el Signal, millor.</string>
-  <string name="reminder_header_service_outage_text">El Signal està patint problemes tècnics. Este treballant per a recuperar el servei tan ràpid com sigui possible.</string>
+  <string name="reminder_header_service_outage_text">El Signal té problemes tècnics. Estem treballant per recuperar el servei tan ràpidament com sigui possible.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Les darreres novetats del Signal no funcionaran en aquesta versió d\'Android. Si us plau, actualitzeu el dispositiu per rebre les futures actualitzacions del Signal.</string>
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
@@ -2347,6 +2390,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Per activar les còpies de seguretat, trieu una carpeta. Les còpies de seguretat s\'hi desaran.</string>
   <string name="BackupDialog_choose_folder">Trieu una carpeta</string>
   <string name="BackupDialog_copied_to_clipboard">Copiat al porta-retalls</string>
+  <string name="BackupDialog_no_file_picker_available">No hi ha selector de fitxers disponible.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Escriviu la contrasenya de còpia de seguretat per verificar-la.</string>
   <string name="BackupDialog_verify">Verificació</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Heu escrit correctament la contrasenya de còpia de seguretat.</string>
@@ -2416,7 +2460,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">El registre d\'aquest número de telèfon serà possible sense el PIN de bloqueig del registre 7 dies després des de l\'últim cop que el número es va usar al Signal. Us manquen %d dies.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN de bloqueig del registre</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Aquest número de telèfon té el bloqueig de registre activat. Si us plau, escriviu el PIN de bloqueig del registre.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">El bloqueig de registre està activat per al vostre número de telèfon.  Per a ajudar-vos a memoritzar el PIN de bloqueig de registre, el Signal us demanarà periòdicament que el confirmeu.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">El bloqueig de registre està activat per al vostre número de telèfon. Per ajudar-vos a memoritzar aquest PIN, el Signal us demanarà periòdicament que el confirmeu.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">He oblidat el PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">PIN oblidat?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">El bloqueig de registre ajuda a protegir el número de telèfon d\'intents de registre no autoritzats. Aquesta funció es pot desactivar en qualsevol moment a la configuració de privadesa del Signal.</string>
@@ -2508,5 +2552,34 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ReviewCard__block">Bloca</string>
   <string name="ReviewCard__delete">Suprimeix</string>
   <string name="ReviewCard__recently_changed">Recentment han canviat el nom del perfil de %1$s a %2$s.</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s s\'hi ha afegit.</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s i %2$s s\'hi han afegit.</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s i %3$s s\'hi han afegit.</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s i %3$d més s\'hi han afegit.</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s n\'ha sortit.</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s i %2$s n\'han sortit.</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s i %3$s n\'han sortit.</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s i %3$d més n\'han sortit.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vós (en un altre dispositiu)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (en un altre dispositiu)</string> -->
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">Suprimir el compte comportarà el següent:</string>
+  <string name="DeleteAccountFragment__enter_your_phone_number">Marqueu el número de telèfon.</string>
+  <string name="DeleteAccountFragment__delete_account">Suprimeix el compte</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Suprimeix la informació del compte i la fotografia del perfil.</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">Suprimeix tots els missatges.</string>
+  <string name="DeleteAccountFragment__no_country_code">No s\'ha especificat el codi del país.</string>
+  <string name="DeleteAccountFragment__no_number">No s\'ha especificat el número.</string>
+  <string name="DeleteAccountFragment__the_phone_number">El número de telèfon marcat no coincideix amb el del compte.</string>
+  <string name="DeleteAccountFragment__are_you_sure">Segur que voleu suprimir el compte?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Això suprimirà el compte del Signal i restablirà l\'aplicació. L\'aplicació es tancarà quan acabi el procés.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">Ha fallat suprimir el compte. Teniu connexió de xarxa?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">Ha fallat suprimir les dades locals. Les podeu suprimir manualment des de la configuració del sistema.</string>
+  <string name="DeleteAccountFragment__launch_app_settings">Obre la configuració de l\'aplicació</string>
+  <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">Cerca països</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">Omet</string>
   <!--EOF-->
 </resources>

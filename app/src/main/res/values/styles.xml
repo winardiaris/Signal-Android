@@ -39,14 +39,6 @@
         <item name="android:windowBackground">@drawable/dialog_background</item>
         <item name="android:textColor">@null</item>
     </style>
-
-    <style name="TextSecure.DarkTheme.FullScreenDialog">
-        <item name="android:windowAnimationStyle">@style/TextSecure.Animation.FullScreenDialog</item>
-    </style>
-
-    <style name="TextSecure.LightTheme.FullScreenDialog">
-        <item name="android:windowAnimationStyle">@style/TextSecure.Animation.FullScreenDialog</item>
-    </style>
     
     <style name="TextSecure.Animation.FullScreenDialog" parent="@android:style/Animation.Activity">
         <item name="android:windowEnterAnimation">@anim/fade_scale_in</item>
@@ -486,6 +478,14 @@
         <item name="iconPadding">0dp</item>
         <item name="rippleColor">@color/core_ultramarine</item>
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.Button.Rounded</item>
+    </style>
+
+    <style name="Widget.Signal.Button.Icon.Circular.Small">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="iconSize">10dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="iconGravity">textStart</item>
     </style>
 
     <style name="ShapeAppearanceOverlay.Signal.Button.Rounded" parent="">

@@ -130,8 +130,8 @@
   <string name="ConversationItem_download_more">  Daha Çox Yüklə</string>
   <string name="ConversationItem_pending">  Gözlənilən</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Təhlükəsiz sessiyanı yeniləyirsən?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Bu söhbətləşmədə şifrələmə problemlərin varsa, bu sənə kömək ola bilər. Mesajların saxlanacaq.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Təhlükəsiz sessiyanı yeniləyirsən?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Bu söhbətləşmədə şifrələmə problemlərin varsa, bu sənə kömək ola bilər. Mesajların saxlanacaq.</string> -->
   <string name="ConversationActivity_reset">Yenilə</string>
   <string name="ConversationActivity_add_attachment">Fayl əlavə et</string>
   <string name="ConversationActivity_select_contact_info">Əlaqə məlumatını seç</string>
@@ -652,7 +652,7 @@
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kameraya giriş icazəsi olmadan QR şifrəni skan etmək mümkün deyil</string>
   <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Pis şifrələnmiş mesaj</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Pis şifrələnmiş mesaj</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesaj mövcud olmayan sessiya üçün şifrələnib</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Pis şifrələnmiş MMS mesaj</string>
@@ -1083,7 +1083,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Hər göndərdiyin SMS üçün çatdırılma hesabatı tələb et</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Müəyyən uzunluğu keçən köhnə mesajları avtomatik olaraq sil</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Köhnə mesajları sil</string> -->
-  <string name="preferences__chats">Söhbətlər və media</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Söhbətlər və media</string> -->
   <string name="preferences__conversation_length_limit">Söhbətləşmənin uzunluq limiti</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Bütün söhbətləri indi təmizlə</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Bütün söhbətləri yoxla və onları uzunluq limitlərinə görə idarə et</string> -->
@@ -1175,7 +1175,7 @@
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Bitdi. Heç nə. Sıfır. Qurtardı.\nHamınız tutuldunuz!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Yeni söhbətləşmə</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Mesajlar qutuna şans yarat ki, bir şey yazsın. Dostuna yazmağa başla.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Mesajlar qutuna şans yarat ki, bir şey yazsın. Dostuna yazmağa başla.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Təhlükəsiz sessiyanı yenidən başlat</string>
   <!--conversation_muted-->
@@ -1217,8 +1217,8 @@
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Sənin Signal-ının vaxtı bugün bitir. Ən son versiyaya yeniləmək üçün kliklə.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Signal-ın versiyasının vaxtı bitib!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Mesajlar artıq göndərilə bilməyəcək. Ən sonr versiyaya yeniləmək üçün kliklə.</string> -->
-  <string name="reminder_header_sms_default_title">Əsas SMS aplikasiyası kimi istifadə et</string>
-  <string name="reminder_header_sms_default_text">Signal-ı əsas SMS aplikasiyası etmək üçün kliklə.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Əsas SMS aplikasiyası kimi istifadə et</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Signal-ı əsas SMS aplikasiyası etmək üçün kliklə.</string> -->
   <string name="reminder_header_sms_import_title">Sistem SMS-ni daxil et</string>
   <string name="reminder_header_sms_import_text">Telefonunun SMS mesajlarını Signal-ın şifrələnmiş məlumat bazasına daxil etmək üçün kliklə.</string>
   <string name="reminder_header_push_title">Signal mesajlarına və zənglərinə icazə ver</string>

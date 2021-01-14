@@ -143,8 +143,8 @@
   <string name="ConversationItem_download_more">  Íoslódáil tuilleadh</string>
   <string name="ConversationItem_pending"> Ag feitheamh</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Athshocraigh rith teachtaireachta slán?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">B\'fhéidir go gcabhraíonn sé seo má bhíonn fadhbanna criptiú sa chomhrá seo. Ní chaillítear do theachtaireachtaí.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Athshocraigh rith teachtaireachta slán?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">B\'fhéidir go gcabhraíonn sé seo má bhíonn fadhbanna criptiú sa chomhrá seo. Ní chaillítear do theachtaireachtaí.</string> -->
   <string name="ConversationActivity_reset">Athshocraigh</string>
   <string name="ConversationActivity_add_attachment">Cuir ceangaltán leis</string>
   <string name="ConversationActivity_select_contact_info">Roghnaigh eolas teagmhála</string>
@@ -584,7 +584,7 @@ a shonrú</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Ní féidir QR code a scanadh gan cead Cheamara.</string>
   <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Teachtaireacht criptiú go mícheart</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Teachtaireacht criptiú go mícheart</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Teachtaireacht criptiú le haghaidh rith teachtaireachta neamheiseach</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Teachtaireacht MMS criptiú le haghaidh rith teachtaireachta neamheiseach</string>
@@ -958,7 +958,7 @@ a shonrú</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
   <string name="preferences__mmsc_password">Focal faire MMSC</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Scrios seanteachtaireachtaí</string> -->
-  <string name="preferences__chats">Comhráite agus meáin</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Comhráite agus meáin</string> -->
   <string name="preferences__conversation_length_limit">Fadtheorainn comhrá</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Bearr gach comhrá anois</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Scan trí gach comhrá agus fadtheorainn a chuir i bhfeidhm</string> -->
@@ -1037,7 +1037,7 @@ a shonrú</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Comhrá nua</string>
   <string name="conversation_list_fragment__open_camera_description">Oscail an Grianghrafadán</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Tabhair rud éigin do do bhosca isteach. Tosaigh anois trí theachtaireacht a sheoladh chuig cara.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Tabhair rud éigin do do bhosca isteach. Tosaigh anois trí theachtaireacht a sheoladh chuig cara.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Athshocraigh rith teachtaireachta slán</string>
   <!--conversation_muted-->
@@ -1075,8 +1075,8 @@ a shonrú</string>
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Rachaidh do leagan Signal as bhfeidhm inniu. Cnag chun é a nuashonrú chuig an leagan is deanaí.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Tá an leagan de Signal atá agat as feidhm!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Ní sheolfar go rathúil teachtaireachtaí a thuilleadh. Cnag chun é a nuashonrú chuig an leagan is déanaí.</string> -->
-  <string name="reminder_header_sms_default_title">Úsáid mar aip SMS réamhshocrú</string>
-  <string name="reminder_header_sms_default_text">Cnag chun Signal a úsáid mar aip SMS réamhshocrú</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Úsáid mar aip SMS réamhshocrú</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Cnag chun Signal a úsáid mar aip SMS réamhshocrú</string> -->
   <string name="reminder_header_sms_import_title">Tabhair isteach SMS an chórais</string>
   <string name="reminder_header_push_title">Cumasaigh teachtaireachtaí agus glaonna Signal</string>
   <string name="reminder_header_push_text">Feabhsaigh do chumarsáid.</string>

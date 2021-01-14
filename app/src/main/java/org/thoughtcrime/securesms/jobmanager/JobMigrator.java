@@ -71,7 +71,6 @@ public class JobMigrator {
                                               jobSpec.getMaxAttempts(),
                                               jobSpec.getMaxBackoff(),
                                               jobSpec.getLifespan(),
-                                              jobSpec.getMaxInstances(),
                                               dataSerializer.serialize(updatedJobData.getData()),
                                               jobSpec.getSerializedInputData(),
                                               jobSpec.isRunning(),

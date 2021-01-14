@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.webrtc.audio;
 
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
@@ -10,11 +9,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
-import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -41,8 +38,9 @@ public class BluetoothStateManager {
   private final BluetoothStateListener      listener;
   private final AtomicBoolean               destroyed;
 
+  private volatile ScoConnection scoConnection = ScoConnection.DISCONNECTED;
+
   private BluetoothHeadset bluetoothHeadset = null;
-  private ScoConnection    scoConnection    = ScoConnection.DISCONNECTED;
   private boolean          wantsConnection  = false;
 
   public BluetoothStateManager(@NonNull Context context, @Nullable BluetoothStateListener listener) {
@@ -110,7 +108,17 @@ public class BluetoothStateManager {
   }
 
   private void handleBluetoothStateChange() {
-    if (listener != null && !destroyed.get()) listener.onBluetoothStateChanged(isBluetoothAvailable());
+    if (!destroyed.get()) {
+      boolean isBluetoothAvailable = isBluetoothAvailable();
+
+      if (!isBluetoothAvailable) {
+        setWantsConnection(false);
+      }
+
+      if (listener != null)  {
+        listener.onBluetoothStateChanged(isBluetoothAvailable);
+      }
+    }
   }
 
   private boolean isBluetoothAvailable() {
@@ -136,7 +144,6 @@ public class BluetoothStateManager {
 
   private void requestHeadsetProxyProfile() {
     this.bluetoothAdapter.getProfileProxy(context, new BluetoothProfile.ServiceListener() {
-      @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
       @Override
       public void onServiceConnected(int profile, BluetoothProfile proxy) {
         if (destroyed.get()) {
@@ -191,23 +198,17 @@ public class BluetoothStateManager {
 
               for (BluetoothDevice device : devices) {
                 if (bluetoothHeadset.isAudioConnected(device)) {
-                  int deviceClass = device.getBluetoothClass().getDeviceClass();
+                  scoConnection = ScoConnection.CONNECTED;
 
-                  if (deviceClass == BluetoothClass.Device.AUDIO_VIDEO_HANDSFREE ||
-                      deviceClass == BluetoothClass.Device.AUDIO_VIDEO_CAR_AUDIO ||
-                      deviceClass == BluetoothClass.Device.AUDIO_VIDEO_WEARABLE_HEADSET)
-                  {
-                    scoConnection = ScoConnection.CONNECTED;
-
-                    if (wantsConnection) {
-                      AudioManager audioManager = ServiceUtil.getAudioManager(context);
-                      audioManager.setBluetoothScoOn(true);
-                    }
+                  if (wantsConnection) {
+                    AudioManager audioManager = ServiceUtil.getAudioManager(context);
+                    audioManager.setBluetoothScoOn(true);
                   }
                 }
               }
-
             }
+          } else if (status == AudioManager.SCO_AUDIO_STATE_DISCONNECTED) {
+            setWantsConnection(false);
           }
         }
       }

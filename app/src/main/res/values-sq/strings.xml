@@ -190,7 +190,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Kjo mesazh <b>nuk</b> s\’do të fshehtëzohet, ngaqë marrësi s\’është më përdorues i Signal-it.\n\nTë dërgohet mesazh i pasiguruar?</string>
   <string name="ConversationItem_unable_to_open_media">S\’gjendet dot një aplikacion i aftë për hapjen e kësaj medie.</string>
   <string name="ConversationItem_copied_text">U kopjua %s</string>
-  <string name="ConversationItem_from_s">nga %s</string>
+  <string name="ConversationItem_from_s">prej %s</string>
   <string name="ConversationItem_to_s">për %s</string>
   <string name="ConversationItem_read_more">  Lexoni Më Tepër</string>
   <string name="ConversationItem_download_more">  Shkarkoni Më Tepër</string>
@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">Ky mesazh u fshi.</string>
   <string name="ConversationItem_you_deleted_this_message">E fshitë këtë mesazh.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Të rikthehet te parazgjedhjet sesioni i sigurt?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Kjo mund të ndihmojë nëse keni probleme fshehtëzimi në këtë bisedë. Mesazhet tuaja do të ruhen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Të rikthehet te parazgjedhjet sesioni i sigurt?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Kjo mund të ndihmojë nëse keni probleme fshehtëzimi në këtë bisedë. Mesazhet tuaja do të ruhen.</string> -->
   <string name="ConversationActivity_reset">Riktheje</string>
   <string name="ConversationActivity_add_attachment">Shtoni bashkëngjitje</string>
   <string name="ConversationActivity_select_contact_info">Përzgjidhni të dhëna kontakti</string>
@@ -208,6 +208,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Marrësi s\’është adresë SMS ose email e vlefshme!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Mesazhi është i zbrazët!</string>
   <string name="ConversationActivity_group_members">Anëtarë grupi</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Prekni këtu që të nisë një thirrje grupi</string>
   <string name="ConversationActivity_invalid_recipient">Marrës i pavlefshëm!</string>
   <string name="ConversationActivity_added_to_home_screen">U shtua te skena e kreut</string>
   <string name="ConversationActivity_calls_not_supported">Thirrjet nuk mbulohen</string>
@@ -255,7 +256,9 @@
   <string name="ConversationActivity_delete_and_leave">Fshije dhe braktise</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Për të thirrur %1$s, Signal-i lyp leje përdorimi të mikrofonit tuaj</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Për të thirrur %1$s, Signal-i lyp leje përdorimi të mikrofonit dhe kamerës tuaj.</string>
-  <string name="ConversationActivity__more_options_now_in_group_settings">Tanimë më tepër mundësi te \"Rregullime grupi\"</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">Tanimë më tepër mundësi te “Rregullime grupi”</string>
+  <string name="ConversationActivity_join">Merrni pjesë</string>
+  <string name="ConversationActivity_full">Plot</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mesazh i palexuar</item>
@@ -416,6 +419,9 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal-i bazohet në njerëz si ju. Shpaloseni përkrahjen tuaj sot!</string>
   <string name="DonateMegaphone_donate">Dhuroni</string>
   <string name="DonateMegaphone_no_thanks">Jo Falemnderit</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">Ju paraqesim Thirrje Grupi</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Që të nisni një thirrje të lirë, të fshehtëzuar, në grup, hapni një Grup të Ri</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizoje për Shërbime Play që mungojnë</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Kjo pajisje nuk mbulon Shërbime Play. Prekeni që të çaktivizohen optimizime baterie sistemi të cilat e pengojnë Signal-in të marrë mesazhe teksa është joaktiv.</string>
@@ -514,7 +520,7 @@ grupit dhe s’do të marrë mesazhe grupi përpara se ta pranojë:</item>
     <item quantity="one">Shtoni anëtar</item>
     <item quantity="other">Shtoni anëtarë</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Jo tani</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Jo, faleminderit</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Të shtohet anëtari?</item>
@@ -594,6 +600,7 @@ grupit dhe s’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="AddGroupDetailsFragment__create_group">Krijo grup</string>
   <string name="AddGroupDetailsFragment__create">Krijoje</string>
   <string name="AddGroupDetailsFragment__members">Anëtarë</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Mund të shtoni ose ftoni shokë pas krijimit të këtij grupi.</string>
   <string name="AddGroupDetailsFragment__group_name_required">Emër grupi (e domosdoshme)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Emër grupi (i domosdoshëm)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Kjo fushë është e domosdoshme.</string>
@@ -670,7 +677,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageGroupActivity_legacy_group_upgrade">Ky është një Grup i Dikurshëm. Që të përdorni veçori të reja, të tilla si @përmendje dhe përgjegjës,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Ky Grup i Dikurshëm s’mund të përmirësohet si Grup i Ri, ngaqë është shumë i madh. Madhësia maksimum për grupet është %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">përmirësoni këtë grup.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ky është një grup MMS i pasigurt. Që të fjaloseni privatisht dhe të përdorni veçori të tilla si emra grupesh, për shembull, ftojini kontaktet tuaj te Signal-i.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ky është një grup MMS i pasigurt. Që të fjaloseni privatisht, ftojini kontaktet tuaj te Signal-i.</string>
   <string name="ManageGroupActivity_invite_now">Ftojini tani</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Njoftomë për Përmendje</string>
@@ -765,6 +772,15 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Përditësoni Signal-in</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Një ose më tepër prej pajisjeve tuaja të lidhura po xhirojnë një version të Signal-it që nuk mbulon lidhje grupesh. Që të bëheni pjesë e këtij grupi, përditësojeni Signal-in te pajisja(et) tuaj të lidhur.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Lidhja e grupit s’është e vlefshme</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Ftoni shokë</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Jepuni shokëve një lidhje, që të mund të bëhen shpejt e shpejt pjesë e këtij grupi.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Aktivizojeni dhe jepuni lidhjen</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Jepuni lidhjen</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">S’arrihet të aktivizohet lidhje grupi. Ju lutemi, riprovoni më vonë</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">U has një gabim rrjeti.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">S’keni të drejtën të aktivizoni lidhjen e grupit. Ju lutemi, kërkojani një përgjegjësi.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Aktualisht s’jeni anëtar i grupit.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Të shtohet “%1$s” te grupi?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Të hidhet poshtë kërkesa prej “%1$s”?</string>
@@ -862,6 +878,10 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="Megaphones_verify_your_signal_pin">Verifikoni PIN-in tuaj të Signal-it</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Me raste, do t’ju kërkojmë të verifikoni PIN-in tuaj, që kështu të mund ta mbani mend.</string>
   <string name="Megaphones_verify_pin">Verifikoje PIN-in</string>
+  <string name="Megaphones_get_started">Fillojani</string>
+  <string name="Megaphones_new_group">Grup i ri</string>
+  <string name="Megaphones_invite_friends">Ftoni shokë</string>
+  <string name="Megaphones_use_sms">Use SMS</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Thirrje Signal në zhvillim e sipër</string>
   <string name="NotificationBarManager__establishing_signal_call">Po bëhet thirrje Signal</string>
@@ -932,6 +952,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">E krijuat grupin.</string>
   <string name="MessageRecord_group_updated">Grupi u përditësua.</string>
+  <string name="MessageRecord_invite_friends_to_this_group">Ftoni shokë te ky grup përmes një lidhjeje grupi</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Shtuat %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s shtoi %2$s.</string>
@@ -1220,6 +1241,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="WebRtcCallView__signal_video_call">Thirrje Signal me video…</string>
   <string name="WebRtcCallView__start_call">Nise Thirrjen</string>
   <string name="WebRtcCallView__join_call">Hyni në Thirrje</string>
+  <string name="WebRtcCallView__call_is_full">Thirrja është plot</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Për këtë thirrje është mbërritur në numrin maksimum prej %1$dpjesëmarrësish. Riprovoni më vonë.</string>
   <string name="WebRtcCallView__s_group_call">Thirrje Grupi me \"%1$s\"</string>
   <string name="WebRtcCallView__view_participants_list">Shihni pjesëmarrësit</string>
   <string name="WebRtcCallView__your_video_is_off">Videoja juaj është e fikur</string>
@@ -1239,6 +1262,13 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
     <item quantity="one">Në këtë thirrje · %1$d person</item>
     <item quantity="other">Në këtë thirrje · %1$d vetë</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s është bllokuar</string>
+  <string name="CallParticipantView__more_info">Më Tepër të Dhëna</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">S’do të merrni audio ose video prej tyre dhe as ata prej jush.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">S’mund të merret audio &amp; video prej %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">S’mund të merret audio dhe video prej %1$s</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Kjo mund të vijë ngaqë s’kanë verifikuar ndryshimin e numrit tuaj të sigurisë, ka një problem me pajisjen e tyre, ose ju kanë bllokuar.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Përzgjidhni vendin tuaj</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Duhet të specifikoni
@@ -1276,8 +1306,10 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="RegistrationActivity_continue_last_attempt">Vazhdoni (prova e fundit!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Merreni privatësinë me vete.\nJini ju vetë, në çdo mesazh.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Që t\’ia filloni, jepni numrin tuaj të telefonit</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Jepni numrin e telefonit tuaj</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Do të merrni një kod verifikimi. Mund të ketë tarifa operatori.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Jepni kodin që dërguam te %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Sigurohuni se telefoni juaj ka sinjal celulari për të marrë SMS-në ose thirrjen tuaj</string>
   <string name="RegistrationActivity_phone_number_description">Numër telefoni</string>
   <string name="RegistrationActivity_country_code_description">Kod vendi</string>
   <string name="RegistrationActivity_call">Thirrje</string>
@@ -1299,6 +1331,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="SearchFragment_header_conversations">Biseda</string>
   <string name="SearchFragment_header_contacts">Kontakte</string>
   <string name="SearchFragment_header_messages">Mesazhe</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Shtoje te Kontaktet</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Ftoje në Signal</string>
@@ -1422,6 +1455,10 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="UsernameEditFragment_username_is_invalid">Emri i përdoruesit është i pavlefshëm.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Emrat e përdoruesit duhet të jenë mes %1$d dhe %2$d shenjash.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Emrat e përdoruesve në Signal janë opsionalë. Nëse vendosni të krijoni një emër përdoruesi, përdorues të tjerë të Signal-it do të jenë në gjendje t’ju gjejnë me këtë emër përdoruesi dhe të lidhen me ju pa ditur numrin tuaj të telefonit.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d kontakt është në Signal!</item>
+    <item quantity="other">%d kontakte janë në Signal!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakti juaj xhiron një version të vjetër të Signal-it. Ju lutemi, kërkojini ta përditësojë, para se të verifikohet numri juaj i sigurisë.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakti juaj xhiron një version më të ri të Signal-it, me një format kodi QR të papërputhshëm. Ju lutemi, që të krahasohen, përditësojeni.</string>
@@ -1436,7 +1473,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Mesazh i fshehtëzuar keq</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Mesazh i fshehtëzuar keq</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesazh i fshehtëzuar për sesion që s\’ekziston</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mesazh MMS i fshehtëzuar keq</string>
@@ -1542,12 +1579,14 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">U përgjigj në një pajisje të lidhur.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Hedhur tej në një pajisje të lidhur.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">I zënë në një pajisje të lidhur.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Dikush ka hyrë në këtë thirrje me një numër sigurie që ka ndryshuar.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Numri i sigurisë për bisedën tuaj me %1$s ka ndryshuar. Kjo mund të jetë shenjë se ose sepse dikush po rreket të përgjojë komunikimin tuaj, ose se %2$s thjesht ka riinstaluar Signal-in.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Mund të donit të verifikonit numrin tuaj të sigurisë me këtë kontakt.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Numër i ri sigurie</string>
   <string name="WebRtcCallScreen_accept">Pranoje</string>
   <string name="WebRtcCallScreen_end_call">Përfundoje thirrjen</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">Fërkojeni për sipër që të ndryshoni parjet</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Hidhet tej</string>
   <string name="WebRtcCallScreen__answer">Përgjigjuni</string>
@@ -1658,6 +1697,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ConversationUpdateItem_learn_more">Mësoni më tepër</string>
   <string name="ConversationUpdateItem_join_call">Hyni në thirrje</string>
   <string name="ConversationUpdateItem_return_to_call">Kthehuni te thirrja</string>
+  <string name="ConversationUpdateItem_call_is_full">Thirrja është plot</string>
+  <string name="ConversationUpdateItem_invite_friends">Ftoni shokë</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Luaje … Pauzë</string>
   <string name="audio_view__download_accessibility_description">Shkarkoje</string>
@@ -1676,6 +1717,9 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="safety_number_change_dialog__safety_number_changes">Ndryshime Numri Sigurie</string>
   <string name="safety_number_change_dialog__send_anyway">Dërgoje, sido qoftë</string>
   <string name="safety_number_change_dialog__call_anyway">Thirre, sido qoftë</string>
+  <string name="safety_number_change_dialog__join_call">Hyni në thirrje</string>
+  <string name="safety_number_change_dialog__continue_call">Vazhdoje thirrjen</string>
+  <string name="safety_number_change_dialog__leave_call">Dilni nga thirrja</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Personat vijues mund të kenë riinstaluar ose ndryshuar pajisjet. Për të siguruar privatësi, verifikoni me ta numrin tuaj të sigurisë.</string>
   <string name="safety_number_change_dialog__view">Shihni</string>
   <string name="safety_number_change_dialog__previous_verified">Verifikuar më herët</string>
@@ -1979,7 +2023,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="preferences__mmsc_password">Fjalëkalim MMSC</string>
   <string name="preferences__sms_delivery_reports">Raporte dërgimi SMS-sh</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Kërko raport dorëzimi për çdo mesazh SMS që dërgoni</string>
-  <string name="preferences__chats">Fjalosje dhe media</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Fjalosje dhe media</string> -->
   <string name="preferences__storage">Hapësirë</string>
   <string name="preferences__conversation_length_limit">Kufi gjatësie bisedash</string>
   <string name="preferences__keep_messages">Mbaji mesazhet</string>
@@ -2002,6 +2046,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences__advanced_pin_settings">Rregullimet të mëtejshme PIN-i</string>
   <string name="preferences__free_private_messages_and_calls">Mesazhe dhe thirrje falas drejt përdoruesish të Signal-it</string>
   <string name="preferences__submit_debug_log">Parashtro regjistër diagnostikimi</string>
+  <string name="preferences__delete_account">Fshije llogarinë</string>
   <string name="preferences__support_wifi_calling">Mënyrë përputhshmëri me \'Thirrje Wifi\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivizojeni nëse pajisja juaj përdor dërgim SMS/MMS-sh përmes WiFi (aktivizojeni vetëm kur \'Thirrje Wifi\' janë të aktivizuara në pajisjen tuaj).</string>
   <string name="preferences__incognito_keyboard">Tastiera inkonjito</string>
@@ -2121,7 +2166,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Bisedë e re</string>
   <string name="conversation_list_fragment__open_camera_description">Hape Kamerën</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Sajoni diçka për shkrim në shtëpi. Fillojani duke shkruar një mesazh për një shok.</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Ende pa fjalosje.\nFillojani duke i dërguar një mesazh një shoku.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Rikthe te parazgjedhjen sesionin e sigurt</string>
   <!--conversation_muted-->
@@ -2158,8 +2203,6 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopjoje në të papastër</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Krahasoje me lëndën në të papastër</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Përdoresi aplikacionin parazgjedhje për SMS-të</string>
-  <string name="reminder_header_sms_default_text">Prekeni për ta bërë Signal-in aplikacionin tuaj parazgjedhje për SMS-të.</string>
   <string name="reminder_header_sms_import_title">Importo SMS sistemi</string>
   <string name="reminder_header_sms_import_text">Prekeni që të kopjohen mesazhet SMS të telefonit tuaj te baza e fshehtëzuar e të dhënave të Signal-it.</string>
   <string name="reminder_header_push_title">Aktivizo mesazhe dhe thirrje Signal</string>
@@ -2357,6 +2400,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Që të aktivizohen kopjeruajtje, zgjidhni një dosje. Kopjeruajtjet do të ruhen te kjo vendndodhje.</string>
   <string name="BackupDialog_choose_folder">Zgjidhni dosje</string>
   <string name="BackupDialog_copied_to_clipboard">U kopjua në të papastër</string>
+  <string name="BackupDialog_no_file_picker_available">S’ka zgjedhës kartelash.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Jepni frazëkalimin tuaj të kopjeruajtjes që duhet verifikuar</string>
   <string name="BackupDialog_verify">Verifikoje</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">E dhatë me sukses frazëkalimin tuaj të kopjeruajtjes</string>
@@ -2518,5 +2562,34 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ReviewCard__block">Bllokoje</string>
   <string name="ReviewCard__delete">Fshije</string>
   <string name="ReviewCard__recently_changed">Ndryshoi së fundi emrin e vet të profilit nga %1$s në %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">Erdhi %1$s</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">Erdhën %1$s dhe %2$s</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">Erdhën %1$s, %2$s dhe %3$s</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">Erdhën %1$s, %2$s dhe %3$d të tjerë</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s iku</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s dhe %2$s ikën</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s dhe %3$s ikën</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s dhe %3$d të tjerë ikën</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Ju (në një tjetër pajisje)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (në tjetër pajisje)</string> -->
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">Fshirja e llogarisë tuaj do të:</string>
+  <string name="DeleteAccountFragment__enter_your_phone_number">Jepni numrin e telefonit tuaj</string>
+  <string name="DeleteAccountFragment__delete_account">Fshijë llogarinë</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Fshijë të dhënat e llogarisë tuaj dhe foton e profilit tuaj</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">Fshijë krejt mesazhet tuaj</string>
+  <string name="DeleteAccountFragment__no_country_code">S’u dha kod vendi</string>
+  <string name="DeleteAccountFragment__no_number">S’u tregua numër</string>
+  <string name="DeleteAccountFragment__the_phone_number">Numri i telefonit që dhatë nuk përputhet me atë të llogarisë tuaj.</string>
+  <string name="DeleteAccountFragment__are_you_sure">Jeni i sigurt se doni të fshihet llogaria juaj?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Kjo do të fshijë llogarinë tuaj Signal dhe do të kthejë aplikacionin te parazgjedhjet. Aplikacioni do të mbyllet pasi të plotësohet procesi.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">S’u arrit të fshihet llogaria. A jeni i lidhur në rrjet?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">S’u arrit të fshihen të dhëna vendore. Mund t’i spastroni dorazi, që nga rregullimet e sistemit.</string>
+  <string name="DeleteAccountFragment__launch_app_settings">Hap Rregullime Aplikacioni</string>
+  <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">Kërkoni Te Vendet</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">Anashkaloje</string>
   <!--EOF-->
 </resources>

@@ -27,15 +27,18 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Rational;
+import android.view.View;
 import android.view.Window;
+import android.view.WindowInsetsController;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.transition.Transition;
+import androidx.transition.TransitionListenerAdapter;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -59,18 +62,19 @@ import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.EllapsedTimeFormatter;
+import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.WindowUtil;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 
 import java.util.List;
 
-public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumberChangeDialog.Callback {
+public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChangeDialog.Callback {
 
-
-  private static final String TAG = WebRtcCallActivity.class.getSimpleName();
+  private static final String TAG = Log.tag(WebRtcCallActivity.class);
 
   private static final int STANDARD_DELAY_FINISH = 1000;
 
@@ -82,6 +86,7 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
 
   private CallParticipantsListUpdatePopupWindow participantUpdateWindow;
 
+  private FullscreenHelper    fullscreenHelper;
   private WebRtcCallView      callScreen;
   private TooltipPopup        videoTooltip;
   private WebRtcCallViewModel viewModel;
@@ -102,8 +107,8 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
 
     requestWindowFeature(Window.FEATURE_NO_TITLE);
     setContentView(R.layout.webrtc_call_activity);
-    //noinspection ConstantConditions
-    getSupportActionBar().hide();
+
+    fullscreenHelper = new FullscreenHelper(this);
 
     setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
 
@@ -128,7 +133,7 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
   }
 
   @Override
-  public void onNewIntent(Intent intent){
+  public void onNewIntent(Intent intent) {
     Log.i(TAG, "onNewIntent");
     super.onNewIntent(intent);
     processIntent(intent);
@@ -143,9 +148,9 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
       EventBus.getDefault().unregister(this);
     }
 
-    if (!viewModel.isCallingStarted()) {
+    if (!viewModel.isCallStarting()) {
       CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
-      if (state != null && state.getCallState() == WebRtcViewModel.State.CALL_PRE_JOIN) {
+      if (state != null && state.getCallState().isPreJoinOrNetworkUnavailable()) {
         finish();
       }
     }
@@ -158,9 +163,9 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
 
     EventBus.getDefault().unregister(this);
 
-    if (!viewModel.isCallingStarted()) {
+    if (!viewModel.isCallStarting()) {
       CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
-      if (state != null && state.getCallState() == WebRtcViewModel.State.CALL_PRE_JOIN) {
+      if (state != null && state.getCallState().isPreJoinOrNetworkUnavailable()) {
         Intent intent = new Intent(this, WebRtcCallService.class);
         intent.setAction(WebRtcCallService.ACTION_CANCEL_PRE_JOIN_CALL);
         startService(intent);
@@ -188,6 +193,7 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
   @Override
   public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode, Configuration newConfig) {
     viewModel.setIsInPipMode(isInPictureInPictureMode);
+    participantUpdateWindow.setEnabled(!isInPictureInPictureMode);
   }
 
   private boolean enterPipModeIfPossible() {
@@ -196,6 +202,8 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
               .setAspectRatio(new Rational(9, 16))
               .build();
       enterPictureInPictureMode(params);
+      CallParticipantsListDialog.dismiss(getSupportFragmentManager());
+
       return true;
     }
     return false;
@@ -241,6 +249,8 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     viewModel.getCallParticipantsState().observe(this, callScreen::updateCallParticipants);
     viewModel.getCallParticipantListUpdate().observe(this, participantUpdateWindow::addCallParticipantListUpdate);
     viewModel.getSafetyNumberChangeEvent().observe(this, this::handleSafetyNumberChangeEvent);
+    viewModel.getGroupMembers().observe(this, unused -> updateGroupMembersForGroupCall());
+    viewModel.shouldShowSpeakerHint().observe(this, this::updateSpeakerHint);
 
     callScreen.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
       CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
@@ -468,7 +478,6 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
   private void handleServerFailure() {
     EventBus.getDefault().removeStickyEvent(WebRtcViewModel.class);
     callScreen.setStatus(getString(R.string.RedPhone_network_failed));
-    delayedFinish();
   }
 
   private void handleNoSuchUser(final @NonNull WebRtcViewModel event) {
@@ -505,6 +514,18 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     }
   }
 
+  private void updateGroupMembersForGroupCall() {
+    startService(new Intent(this, WebRtcCallService.class).setAction(WebRtcCallService.ACTION_GROUP_REQUEST_UPDATE_MEMBERS));
+  }
+
+  private void updateSpeakerHint(boolean showSpeakerHint) {
+    if (showSpeakerHint) {
+      callScreen.showSpeakerViewHint();
+    } else {
+      callScreen.hideSpeakerViewHint();
+    }
+  }
+
   @Override
   public void onSendAnywayAfterSafetyNumberChange(@NonNull List<RecipientId> changedRecipients) {
     CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
@@ -514,7 +535,7 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
             .putExtra(WebRtcCallService.EXTRA_RECIPIENT_IDS, RecipientId.toSerializedList(changedRecipients));
       startService(intent);
     } else {
-      startCall(state.getLocalParticipant().isVideoEnabled());
+      viewModel.startCall(state.getLocalParticipant().isVideoEnabled());
     }
   }
 
@@ -525,7 +546,7 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
   public void onCanceled() {
     CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
     if (state != null && state.getGroupCallState().isNotIdle()) {
-      if (state.getCallState() == WebRtcViewModel.State.CALL_PRE_JOIN) {
+      if (state.getCallState().isPreJoinOrNetworkUnavailable()) {
         Intent intent = new Intent(this, WebRtcCallService.class);
         intent.setAction(WebRtcCallService.ACTION_CANCEL_PRE_JOIN_CALL);
         startService(intent);
@@ -623,6 +644,16 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     }
 
     @Override
+    public void showSystemUI() {
+      fullscreenHelper.showSystemUI();
+    }
+
+    @Override
+    public void hideSystemUI() {
+      fullscreenHelper.hideSystemUI();
+    }
+
+    @Override
     public void onAudioOutputChanged(@NonNull WebRtcAudioOutput audioOutput) {
       switch (audioOutput) {
         case HANDSET:
@@ -686,6 +717,11 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     @Override
     public void onPageChanged(@NonNull CallParticipantsState.SelectedPage page) {
       viewModel.setIsViewingFocusedParticipant(page);
+    }
+
+    @Override
+    public void onLocalPictureInPictureClicked() {
+      viewModel.onLocalPictureInPictureClicked();
     }
   }
 }

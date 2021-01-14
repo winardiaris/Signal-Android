@@ -243,7 +243,6 @@ import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stickers.StickerManagementActivity;
 import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent;
 import org.thoughtcrime.securesms.stickers.StickerSearchRepository;
-import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapUtil;
@@ -302,7 +301,6 @@ import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
  * @author Moxie Marlinspike
  *
  */
-@Trace
 @SuppressLint("StaticFieldLeak")
 public class ConversationActivity extends PassphraseRequiredActivity
     implements ConversationFragment.ConversationFragmentListener,
@@ -374,6 +372,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private   View                     cancelJoinRequest;
   private   Stub<View>               mentionsSuggestions;
   private   MaterialButton           joinGroupCallButton;
+  private   boolean                  callingTooltipShown;
 
   private LinkPreviewViewModel         linkPreviewViewModel;
   private ConversationSearchViewModel  searchViewModel;
@@ -408,7 +407,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     if (ConversationIntents.isInvalid(getIntent())) {
       Log.w(TAG, "[onCreate] Missing recipientId!");
       // TODO [greyson] Navigation
-      startActivity(new Intent(this, MainActivity.class));
+      startActivity(MainActivity.clearTop(this));
       finish();
       return;
     }
@@ -487,7 +486,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     if (ConversationIntents.isInvalid(intent)) {
       Log.w(TAG, "[onNewIntent] Missing recipientId!");
       // TODO [greyson] Navigation
-      startActivity(new Intent(this, MainActivity.class));
+      startActivity(MainActivity.clearTop(this));
       finish();
       return;
     }
@@ -537,6 +536,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
                              .startChain(new RequestGroupV2InfoJob(groupId))
                              .then(new GroupV2UpdateSelfProfileKeyJob(groupId))
                              .enqueue();
+
+      if (viewModel.getArgs().isFirstTimeInSelfCreatedGroup()) {
+        groupViewModel.inviteFriendsOneTimeIfJustSelfInGroup(getSupportFragmentManager(), groupId);
+      }
     }
 
     if (groupCallViewModel != null) {
@@ -830,6 +833,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
         if (groupCallViewModel != null && Boolean.TRUE.equals(groupCallViewModel.hasActiveGroupCall().getValue())) {
           hideMenuItem(menu, R.id.menu_video_secure);
         }
+        showGroupCallingTooltip();
       }
 
       inflater.inflate(R.menu.conversation_group_options, menu);
@@ -848,9 +852,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     inflater.inflate(R.menu.conversation, menu);
 
-    if (isSingleConversation() && isSecureText) {
-      inflater.inflate(R.menu.conversation_secure, menu);
-    } else if (isSingleConversation()) {
+    if (isSingleConversation() && !isSecureText) {
       inflater.inflate(R.menu.conversation_insecure, menu);
     }
 
@@ -969,7 +971,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
     case R.id.menu_add_shortcut:              handleAddShortcut();                               return true;
     case R.id.menu_search:                    handleSearch();                                    return true;
     case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
-    case R.id.menu_reset_secure_session:      handleResetSecureSession();                        return true;
     case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
     case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
     case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
@@ -1182,36 +1183,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
       intent.putExtra(Intent.EXTRA_TEXT, inviteText);
       startActivity(intent);
     }
-  }
-
-  private void handleResetSecureSession() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle(R.string.ConversationActivity_reset_secure_session_question);
-    builder.setIcon(R.drawable.ic_warning);
-    builder.setCancelable(true);
-    builder.setMessage(R.string.ConversationActivity_this_may_help_if_youre_having_encryption_problems);
-    builder.setPositiveButton(R.string.ConversationActivity_reset, (dialog, which) -> {
-      if (isSingleConversation()) {
-        final Context context = getApplicationContext();
-
-        OutgoingEndSessionMessage endSessionMessage =
-            new OutgoingEndSessionMessage(new OutgoingTextMessage(getRecipient(), "TERMINATE", 0, -1));
-
-        new AsyncTask<OutgoingEndSessionMessage, Void, Long>() {
-          @Override
-          protected Long doInBackground(OutgoingEndSessionMessage... messages) {
-            return MessageSender.send(context, messages[0], threadId, false, null);
-          }
-
-          @Override
-          protected void onPostExecute(Long result) {
-            sendComplete(result);
-          }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, endSessionMessage);
-      }
-    });
-    builder.setNegativeButton(android.R.string.cancel, null);
-    builder.show();
   }
 
   private void handleViewMedia() {
@@ -1780,8 +1751,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
       reminderView.get().setOnActionClickListener(actionId -> {
         if (actionId == R.id.reminder_action_gv1_suggestion_add_members) {
           GroupsV1MigrationSuggestionsDialog.show(this, recipient.get().requireGroupId().requireV2(), gv1MigrationSuggestions);
-        } else if (actionId == R.id.reminder_action_gv1_suggestion_not_now) {
-          groupViewModel.onSuggestedMembersBannerDismissed(recipient.get().requireGroupId());
+        } else if (actionId == R.id.reminder_action_gv1_suggestion_no_thanks) {
+          groupViewModel.onSuggestedMembersBannerDismissed(recipient.get().requireGroupId(), gv1MigrationSuggestions);
         }
       });
       reminderView.get().setOnDismissListener(() -> {
@@ -1880,31 +1851,31 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   private void initializeViews() {
     titleView                = findViewById(R.id.conversation_title_view);
-    buttonToggle             = ViewUtil.findById(this, R.id.button_toggle);
-    sendButton               = ViewUtil.findById(this, R.id.send_button);
-    attachButton             = ViewUtil.findById(this, R.id.attach_button);
-    composeText              = ViewUtil.findById(this, R.id.embedded_text_editor);
-    charactersLeft           = ViewUtil.findById(this, R.id.space_left);
+    buttonToggle             = findViewById(R.id.button_toggle);
+    sendButton               = findViewById(R.id.send_button);
+    attachButton             = findViewById(R.id.attach_button);
+    composeText              = findViewById(R.id.embedded_text_editor);
+    charactersLeft           = findViewById(R.id.space_left);
     emojiDrawerStub          = ViewUtil.findStubById(this, R.id.emoji_drawer_stub);
     attachmentKeyboardStub   = ViewUtil.findStubById(this, R.id.attachment_keyboard_stub);
-    unblockButton            = ViewUtil.findById(this, R.id.unblock_button);
-    makeDefaultSmsButton     = ViewUtil.findById(this, R.id.make_default_sms_button);
-    registerButton           = ViewUtil.findById(this, R.id.register_button);
-    container                = ViewUtil.findById(this, R.id.layout_container);
+    unblockButton            = findViewById(R.id.unblock_button);
+    makeDefaultSmsButton     = findViewById(R.id.make_default_sms_button);
+    registerButton           = findViewById(R.id.register_button);
+    container                = findViewById(R.id.layout_container);
     reminderView             = ViewUtil.findStubById(this, R.id.reminder_stub);
     unverifiedBannerView     = ViewUtil.findStubById(this, R.id.unverified_banner_stub);
     reviewBanner             = ViewUtil.findStubById(this, R.id.review_banner_stub);
-    quickAttachmentToggle    = ViewUtil.findById(this, R.id.quick_attachment_toggle);
-    inlineAttachmentToggle   = ViewUtil.findById(this, R.id.inline_attachment_container);
-    inputPanel               = ViewUtil.findById(this, R.id.bottom_panel);
-    panelParent              = ViewUtil.findById(this, R.id.conversation_activity_panel_parent);
-    searchNav                = ViewUtil.findById(this, R.id.conversation_search_nav);
-    messageRequestBottomView = ViewUtil.findById(this, R.id.conversation_activity_message_request_bottom_bar);
-    reactionOverlay          = ViewUtil.findById(this, R.id.conversation_reaction_scrubber);
+    quickAttachmentToggle    = findViewById(R.id.quick_attachment_toggle);
+    inlineAttachmentToggle   = findViewById(R.id.inline_attachment_container);
+    inputPanel               = findViewById(R.id.bottom_panel);
+    panelParent              = findViewById(R.id.conversation_activity_panel_parent);
+    searchNav                = findViewById(R.id.conversation_search_nav);
+    messageRequestBottomView = findViewById(R.id.conversation_activity_message_request_bottom_bar);
+    reactionOverlay          = findViewById(R.id.conversation_reaction_scrubber);
     mentionsSuggestions      = ViewUtil.findStubById(this, R.id.conversation_mention_suggestions_stub);
 
-    ImageButton quickCameraToggle      = ViewUtil.findById(this, R.id.quick_camera_toggle);
-    ImageButton inlineAttachmentButton = ViewUtil.findById(this, R.id.inline_attachment_button);
+    ImageButton quickCameraToggle      = findViewById(R.id.quick_camera_toggle);
+    ImageButton inlineAttachmentButton = findViewById(R.id.inline_attachment_button);
 
     noLongerMemberBanner   = findViewById(R.id.conversation_no_longer_member_banner);
     requestingMemberBanner = findViewById(R.id.conversation_requesting_banner);
@@ -1980,7 +1951,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     if (isInBubble()) {
       supportActionBar.setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_notification));
-      toolbar.setNavigationOnClickListener(unused -> startActivity(new Intent(Intent.ACTION_MAIN).setClass(this, MainActivity.class)));
+      toolbar.setNavigationOnClickListener(unused -> startActivity(MainActivity.clearTop(this)));
     }
   }
 
@@ -2134,7 +2105,29 @@ public class ConversationActivity extends PassphraseRequiredActivity
       joinGroupCallButton.setVisibility(hasActiveCall ? View.VISIBLE : View.GONE);
     });
 
-    groupCallViewModel.canJoinGroupCall().observe(this, canJoin -> joinGroupCallButton.setText(canJoin ? R.string.ConversationActivity_join : R.string.ConversationActivity_full));
+    groupCallViewModel.groupCallHasCapacity().observe(this, hasCapacity -> joinGroupCallButton.setText(hasCapacity ? R.string.ConversationActivity_join : R.string.ConversationActivity_full));
+  }
+
+  private void showGroupCallingTooltip() {
+    if (!FeatureFlags.groupCalling() || !SignalStore.tooltips().shouldShowGroupCallingTooltip() || callingTooltipShown) {
+      return;
+    }
+
+    View anchor = findViewById(R.id.menu_video_secure);
+    if (anchor == null) {
+      Log.w(TAG, "Video Call tooltip anchor is null. Skipping tooltip...");
+      return;
+    }
+
+    callingTooltipShown = true;
+
+    SignalStore.tooltips().markGroupCallSpeakerViewSeen();
+    TooltipPopup.forTarget(anchor)
+                .setBackgroundTint(ContextCompat.getColor(this, R.color.signal_accent_green))
+                .setTextColor(getResources().getColor(R.color.core_white))
+                .setText(R.string.ConversationActivity__tap_here_to_start_a_group_call)
+                .setOnDismissListener(() -> SignalStore.tooltips().markGroupCallingTooltipSeen())
+                .show(TooltipPopup.POSITION_BELOW);
   }
 
   private void showStickerIntroductionTooltip() {

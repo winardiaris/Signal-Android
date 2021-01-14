@@ -72,7 +72,6 @@ import org.thoughtcrime.securesms.revealable.ViewOnceExpirationInfo;
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.SqlUtil;
@@ -96,7 +95,6 @@ import java.util.UUID;
 
 import static org.thoughtcrime.securesms.contactshare.Contact.Avatar;
 
-@Trace
 public class MmsDatabase extends MessageDatabase {
 
   private static final String TAG = MmsDatabase.class.getSimpleName();
@@ -466,10 +464,18 @@ public class MmsDatabase extends MessageDatabase {
   public void insertOrUpdateGroupCall(@NonNull RecipientId groupRecipientId,
                                       @NonNull RecipientId sender,
                                       long timestamp,
-                                      @Nullable String messageGroupCallEraId,
                                       @Nullable String peekGroupCallEraId,
                                       @NonNull Collection<UUID> peekJoinedUuids,
                                       boolean isCallFull)
+  {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public void insertOrUpdateGroupCall(@NonNull RecipientId groupRecipientId,
+                                      @NonNull RecipientId sender,
+                                      long timestamp,
+                                      @Nullable String messageGroupCallEraId)
   {
     throw new UnsupportedOperationException();
   }
@@ -1375,6 +1381,11 @@ public class MmsDatabase extends MessageDatabase {
     long messageId = db.insert(TABLE_NAME, null, contentValues);
 
     return new Pair<>(messageId, threadId);
+  }
+
+  @Override
+  public @NonNull InsertResult insertDecryptionFailedMessage(@NonNull RecipientId recipientId, long senderDeviceId, long sentTimestamp) {
+    throw new UnsupportedOperationException();
   }
 
   @Override

@@ -9,11 +9,13 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.annimon.stream.OptionalLong;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.thoughtcrime.securesms.R;
@@ -36,6 +38,13 @@ public class CallParticipantsListDialog extends BottomSheetDialogFragment {
     CallParticipantsListDialog fragment = new CallParticipantsListDialog();
 
     fragment.show(manager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+  }
+
+  public static void dismiss(@NonNull FragmentManager manager) {
+    Fragment fragment = manager.findFragmentByTag(BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+    if (fragment instanceof CallParticipantsListDialog) {
+      ((CallParticipantsListDialog) fragment).dismissAllowingStateLoss();
+    }
   }
 
   @Override
@@ -80,19 +89,21 @@ public class CallParticipantsListDialog extends BottomSheetDialogFragment {
   private void updateList(@NonNull CallParticipantsState callParticipantsState) {
     List<MappingModel<?>> items = new ArrayList<>();
 
-    boolean includeSelf = callParticipantsState.getGroupCallState() == WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINED;
+    boolean      includeSelf = callParticipantsState.getGroupCallState() == WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINED;
+    OptionalLong headerCount = callParticipantsState.getParticipantCount();
 
-    items.add(new CallParticipantsListHeader(callParticipantsState.getAllRemoteParticipants().size() + (includeSelf ? 1 : 0)));
+    headerCount.executeIfPresent(count -> {
+      items.add(new CallParticipantsListHeader((int) count));
 
-    if (includeSelf) {
-      items.add(new CallParticipantViewState(callParticipantsState.getLocalParticipant()));
-    }
+      if (includeSelf) {
+        items.add(new CallParticipantViewState(callParticipantsState.getLocalParticipant()));
+      }
 
-    for (CallParticipant callParticipant : callParticipantsState.getAllRemoteParticipants()) {
-      items.add(new CallParticipantViewState(callParticipant));
-    }
+      for (CallParticipant callParticipant : callParticipantsState.getAllRemoteParticipants()) {
+        items.add(new CallParticipantViewState(callParticipant));
+      }
+    });
 
     adapter.submitList(items);
   }
-
 }

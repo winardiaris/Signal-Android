@@ -92,13 +92,20 @@ public final class CameraXModelBlacklist {
     // Honor View 10
     add("BKL-AL20");
     add("BKL-L04");
-    add("BLK-L09");
+    add("BKL-L09");
     add("BKL-AL00");
 
     // Honor View 20
     add("PCT-AL10");
     add("PCT-TL10");
     add("PCT-L29");
+
+    // Honor Play
+    add("COR-L29");
+    add("COR-L09");
+    add("COR-AL00");
+    add("COR-AL10");
+    add("COR-TL10");
   }};
 
   private CameraXModelBlacklist() {

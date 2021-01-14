@@ -2,7 +2,7 @@
 <resources>
   <string name="yes">はい</string>
   <string name="no">いいえ</string>
-  <string name="delete">削除</string>
+  <string name="delete">削除する</string>
   <string name="please_wait">お待ち下さい…</string>
   <string name="save">保存</string>
   <string name="note_to_self">自分用メモ</string>
@@ -25,7 +25,7 @@
   <string name="ApplicationPreferencesActivity_disable_passphrase">パスフレーズを無効にしますか？</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signalとメッセージ通知のロックを恒久的に解除します。</string>
   <string name="ApplicationPreferencesActivity_disable">無効</string>
-  <string name="ApplicationPreferencesActivity_unregistering">登録解除中</string>
+  <string name="ApplicationPreferencesActivity_unregistering">登録を解除しています</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signalメッセージと通話の登録を解除しています…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signalでのメッセージや通話を無効にしますか？</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">サーバから登録を削除することで、Signalでのメッセージや通話を無効にします。再びSignalを使用するには、電話番号を再登録する必要があります。</string>
@@ -129,8 +129,8 @@
   <string name="CameraContacts_invite_a_contact_to_join_signal">連絡先をSignalへ招待する</string>
   <string name="CameraContacts__menu_search">検索</string>
   <!--ClearProfileActivity-->
-  <string name="ClearProfileActivity_remove">削除</string>
-  <string name="ClearProfileActivity_remove_profile_photo">プロフィール画像を消去しますか？</string>
+  <string name="ClearProfileActivity_remove">削除する</string>
+  <string name="ClearProfileActivity_remove_profile_photo">プロフィール画像を削除しますか？</string>
   <string name="ClearProfileActivity_remove_group_photo">グループ写真を削除しますか？</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Signalをアップデートしてください</string>
@@ -142,7 +142,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">ウェブブラウザが見つかりません。</string>
   <string name="CommunicationActions_no_email_app_found">メールアプリがありません。</string>
-  <string name="CommunicationActions_send_email">メールを送信</string>
+  <string name="CommunicationActions_send_email">メールを送る</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">携帯電話回線で通話中です。</string>
   <string name="CommunicationActions_start_video_call">ビデオ通話を開始しますか？</string>
   <string name="CommunicationActions_start_voice_call">音声通話を開始しますか？</string>
@@ -195,8 +195,8 @@
   <string name="ConversationItem_this_message_was_deleted">このメッセージは削除されました。</string>
   <string name="ConversationItem_you_deleted_this_message">メッセージを削除しました。</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">セキュアセッションをリセットしますか？</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">この会話の暗号化に問題がある場合、改善に役立つ可能性があります。メッセージは削除されません。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">セキュアセッションをリセットしますか？</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">この会話の暗号化に問題がある場合、改善に役立つ可能性があります。メッセージは削除されません。</string> -->
   <string name="ConversationActivity_reset">リセットする</string>
   <string name="ConversationActivity_add_attachment">添付ファイルを追加</string>
   <string name="ConversationActivity_select_contact_info">連絡先情報を選択</string>
@@ -205,6 +205,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">宛先のSMSまたはEメールアドレスが不正です！</string>
   <string name="ConversationActivity_message_is_empty_exclamation">メッセージが空です！</string>
   <string name="ConversationActivity_group_members">グループメンバー</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">タップしてグループ通話を開始</string>
   <string name="ConversationActivity_invalid_recipient">不正な宛先です！</string>
   <string name="ConversationActivity_added_to_home_screen">ホーム画面に追加しました</string>
   <string name="ConversationActivity_calls_not_supported">通話はサポートされていません</string>
@@ -253,6 +254,8 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$sと通話するには、Signalにマイクへのアクセスを許可してください。</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">%1$sと通話するには、Signal にマイクとカメラへのアクセスを許可してください。</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">「グループ設定」のオプションが増えました</string>
+  <string name="ConversationActivity_join">参加する</string>
+  <string name="ConversationActivity_full">満席</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d件の未読メッセージ</item>
@@ -282,7 +285,7 @@
   <string name="ConversationFragment_push">データ (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
-  <string name="ConversationFragment_deleting">削除中</string>
+  <string name="ConversationFragment_deleting">削除しています</string>
   <string name="ConversationFragment_deleting_messages">メッセージを削除しています…</string>
   <string name="ConversationFragment_delete_for_me">自分の分だけ削除</string>
   <string name="ConversationFragment_delete_for_everyone">全員分を削除</string>
@@ -309,7 +312,7 @@
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
     <item quantity="other">選択した%1$d個の会話が完全に削除されます。</item>
   </plurals>
-  <string name="ConversationListFragment_deleting">削除中</string>
+  <string name="ConversationListFragment_deleting">削除しています</string>
   <string name="ConversationListFragment_deleting_selected_conversations">選択した会話を削除しています…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="other">%d件の会話をアーカイブしました</item>
@@ -349,7 +352,7 @@
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">チャットのバックアップ</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">バックアップはパスフレーズを用いて暗号化され、この端末内に保存されます。</string>
-  <string name="BackupsPreferenceFragment__create_backup">バックアップを作成する</string>
+  <string name="BackupsPreferenceFragment__create_backup">バックアップの作成</string>
   <string name="BackupsPreferenceFragment__last_backup">最終バックアップ: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">バックアップフォルダ</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">バックアップ用パスフレーズの確認</string>
@@ -369,7 +372,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">画像を選択してください</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">写真を撮影</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">ギャラリーから選択</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">画像を消去</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">画像を削除する</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">写真を撮るにはカメラへのアクセス許可が必要です。</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">ギャラリーを表示するには、ストレージへのアクセス許可が必要です。</string>
   <!--DateUtils-->
@@ -399,9 +402,12 @@
   <string name="DocumentView_unnamed_file">無名のファイル</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Signalへの寄付</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signalはあなたのような人々に支えられています。Signalを支援していただけませんか？</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signalはユーザの皆様によって支えられています。Signalを支援してください！</string>
   <string name="DonateMegaphone_donate">寄付する</string>
   <string name="DonateMegaphone_no_thanks">しない</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">グループ通話のご紹介</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">新しいグループで暗号化されたグループ通話を始めましょう</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Google Play開発者サービスの不在に対応する</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">この端末はGoogle Play開発者サービスをサポートしていません。Signalがいつでもメッセージを受信できるよう、タップしてバッテリー最適化機能を無効にしてください。</string>
@@ -460,7 +466,7 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">新しいグループとは？</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">新しいグループには、@メンションやグループ管理者機能などがあります。将来、新しい機能も追加されます。</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">すべてのメッセージ履歴とメディアは、アップグレード前から維持されています。</string>
-  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">あなたがグループへの招待を受け入れるまで、グループメッセージは受信できません:</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">グループへの招待を受け入れるまで、グループメッセージは受信できません。</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="other">以下のメンバーがこのグループに再参加するには、招待を受け入れる必要があり、それまではグループメッセージを受信することはありません:</item>
   </plurals>
@@ -468,7 +474,7 @@
     <item quantity="other">このメンバーはグループから削除されました。アップグレードするまで再参加できません:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
-  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">新しいグループにアップグレード</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">新しいグループにアップグレードする</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">このグループをアップグレードする</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">新しいグループには、@メンションやグループ管理者機能などがあります。将来、新しい機能も追加されます。</string>
   <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">すべてのメッセージ履歴とメディアは、アップグレード後も維持されます。</string>
@@ -491,7 +497,7 @@
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="other">メンバーを追加する</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">いまはしない</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">追加しない</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="other">メンバーを追加しますか？</item>
@@ -562,6 +568,7 @@
   <string name="AddGroupDetailsFragment__create_group">グループ作成</string>
   <string name="AddGroupDetailsFragment__create">作成する</string>
   <string name="AddGroupDetailsFragment__members">メンバー</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">このグループを作成した後に、友達を追加したり招待することができます。</string>
   <string name="AddGroupDetailsFragment__group_name_required">グループ名 (必須)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">グループ名 (任意)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">この項目の入力は必須です。</string>
@@ -569,22 +576,22 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">グループの作成に失敗しました</string>
   <string name="AddGroupDetailsFragment__try_again_later">あとで再度試してください。</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Signalグループに対応していない連絡先が選択されたため、このグループはMMSとなります。</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">MMSグループの名前と画像の設定を見られるのはあなただけです。</string>
-  <string name="AddGroupDetailsFragment__remove">消去</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">MMSグループの名前と画像はあなただけに表示されます。</string>
+  <string name="AddGroupDetailsFragment__remove">削除する</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS連絡先</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">このグループから %1$s を削除しますか？</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="other">新しいグループをサポートしないメンバーが%d人いるため、このグループはレガシーグループになります。</item>
   </plurals>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
-    <item quantity="other">新しいグループをサポートしていないメンバーが%d人いるため、このグループを作成できません。</item>
+    <item quantity="other">新しいグループをサポートしないメンバーが%d人いるため、このグループを作成できません。</item>
   </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">「%1$s」が古いバージョンのSignalを使用しているため、レガシーグループが作成されます。当該ユーザのSignalをアップデートするか対象から外せば、新しいバージョンのグループを作成できます。</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="other">古いバージョンのSignalを使用しているメンバーが%1$d人いるため、レガシーグループが作成されます。当該メンバーのSignalをアップデートするか対象から外せば、新しいバージョンのグループを作成できます。</item>
   </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">「%1$s」が古いバージョンのSignalを使用しているため、このグループを作成できません。当該ユーザーを対象から外せば、グループを作成できます。</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">「%1$s」が古いバージョンのSignalを使用しているため、このグループを作成できません。当該メンバーを削除すると、グループを作成できます。</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="other">%1$d人のメンバーが古いバージョンのSignalを使用しているため、このグループを作成できません。当該メンバーを削除すると、グループを作成できます。</item>
   </plurals>
@@ -615,7 +622,7 @@
     <item quantity="other">%d人のメンバーを追加しました。</item>
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">管理者のみがグループリンクの有効、無効を切り替えられます。</string>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">管理者のみが新メンバーの承認制を切り替えできます。</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">管理者のみが新メンバー参加の承認制を切り替えできます。</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">管理者のみがグループリンクをリセットできます。</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">これを実行する権限がありません</string>
   <string name="ManageGroupActivity_not_capable">あなたが追加した相手は新しいグループに対応していないので、Signalをアップデートする必要があります</string>
@@ -629,7 +636,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">これはレガシーグループです。@メンションや管理者などの新機能を使用するには、</string>
   <string name="ManageGroupActivity_legacy_group_too_large">このレガシーグループは大きすぎるため、新しいグループにアップグレードできません。グループの最大人数は%1$d人です。</string>
   <string name="ManageGroupActivity_upgrade_this_group">このグループをアップグレードしてください。</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">これは安全でないMMSグループです。安全にチャットしたりグループ名などの機能を利用するには、連絡先をSignalに招待してください。</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">これは安全でないMMSグループです。安全にチャットするには、連絡先をSignalに招待してください。</string>
   <string name="ManageGroupActivity_invite_now">招待する</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">メンションの通知</string>
@@ -684,7 +691,7 @@
   <string name="ShareableGroupLinkDialogFragment__share">共有する</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">リンクをリセットする</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">メンバー申請</string>
-  <string name="ShareableGroupLinkDialogFragment__approve_new_members">新メンバーを承認する</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">新メンバー参加を承認制にする</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">有効</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">無効</string>
   <string name="ShareableGroupLinkDialogFragment__default">既定</string>
@@ -720,6 +727,15 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signalをアップデート</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">リンク済み端末で使用中のSignalがグループリンクをサポートしていません。このグループに参加するには、リンク済み端末のSignalをアップデートしてください。</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">グループリンクが正しくありません</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">友達を招待しましょう</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">友達とリンクを共有して、すぐにこのグループに参加できるようにしましょう。</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">リンクを有効にして共有する</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">リンクを共有する</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">グループリンクを有効にできません。再度試してください。</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">ネットワークエラーが発生しました。</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">グループリンクを有効にする権限がありません。管理者に問い合わせてください。</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">あなたは現在、このグループのメンバーではありません。</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">「%1$s」をこのグループに追加しますか？</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">「%1$s」からの申請を拒否しますか？</string>
@@ -778,7 +794,7 @@
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
     <item quantity="other">選択した%1$d個のファイルを完全に削除します。これらのアイテムに関連付けられているメッセージテキストもすべて削除されます。</item>
   </plurals>
-  <string name="MediaOverviewActivity_Media_delete_progress_title">削除中</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">削除しています</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">メッセージを削除しています…</string>
   <string name="MediaOverviewActivity_Select_all">すべて選択</string>
   <string name="MediaOverviewActivity_collecting_attachments">添付ファイルを収集しています…</string>
@@ -811,6 +827,10 @@
   <string name="Megaphones_verify_your_signal_pin">Signal PINを確認</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">PINを忘れないよう、時々確認を行います。</string>
   <string name="Megaphones_verify_pin">PINの確認</string>
+  <string name="Megaphones_get_started">始めましょう</string>
+  <string name="Megaphones_new_group">新規グループ</string>
+  <string name="Megaphones_invite_friends">友達を招待する</string>
+  <string name="Megaphones_use_sms">SMSを使用する</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal通話中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal通話を接続しています</string>
@@ -878,6 +898,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">グループを作成しました。</string>
   <string name="MessageRecord_group_updated">グループが更新されました。</string>
+  <string name="MessageRecord_invite_friends_to_this_group">グループリンク経由で友達をこのグループに招待する</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">%1$s を追加しました。</string>
   <string name="MessageRecord_s_added_s">%1$s が %2$s を追加しました。</string>
@@ -993,24 +1014,24 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s に対する安全番号を未検証にしました</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s に対する安全番号を他の端末で未検証にしました</string>
   <!--Group Calling update messages-->
-  <string name="MessageRecord_s_started_a_group_call_s">%1$s がグループ通話を開始 · %2$s</string>
-  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s がグループ通話に参加 · %2$s</string>
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s がグループ通話を開始しました · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s はグループ通話中です · %2$s</string>
   <string name="MessageRecord_you_are_in_the_group_call_s1">グループ通話中です · %1$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s と %2$s がグループ通話に参加 · %3$s</string>
-  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s 、%2$s 、%3$s がグループ通話に参加 · %4$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s と %2$s はグループ通話中です · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s および %3$s がグループ通話中です · %4$s</string>
   <string name="MessageRecord_group_call_s">グループ通話 · %1$s</string>
   <string name="MessageRecord_s_started_a_group_call">%1$s がグループ通話を開始しました</string>
   <string name="MessageRecord_s_is_in_the_group_call">%1$s はグループ通話中です</string>
   <string name="MessageRecord_you_are_in_the_group_call">グループ通話中です</string>
   <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s と %2$s はグループ通話中です</string>
-  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s, %3$s はグループ通話中です</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s および %3$s はグループ通話中です</string>
   <string name="MessageRecord_group_call">グループ通話</string>
   <string name="MessageRecord_you">あなた</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
-    <item quantity="other">%1$s 、%2$s 、%3$d などがグループ通話に参加 · %4$s</item>
+    <item quantity="other">%1$s, %2$s ほか%3$d名がグループ通話中です · %4$s</item>
   </plurals>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
-    <item quantity="other">%1$s, %2$s, %3$d などがグループ通話中です</item>
+    <item quantity="other">%1$s, %2$s ほか%3$d名がグループ通話中です</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">承認する</string>
@@ -1050,7 +1071,7 @@
   <string name="DeviceProvisioningActivity_content_bullets">
 ・自分のすべてのメッセージを読む
 \n・自分の名前でメッセージを送る</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">端末をリンク中</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">端末をリンクしています</string>
   <string name="DeviceProvisioningActivity_content_progress_content">新しい端末をリンクしています…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">端末が承認されました！</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">端末がありません。</string>
@@ -1154,6 +1175,8 @@
   <string name="WebRtcCallView__signal_video_call">Signalビデオ通話…</string>
   <string name="WebRtcCallView__start_call">通話を開始する</string>
   <string name="WebRtcCallView__join_call">通話に参加する</string>
+  <string name="WebRtcCallView__call_is_full">満席です</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">この通話の参加者が、上限の%1$d人に達しました。あとで再度試してください。</string>
   <string name="WebRtcCallView__s_group_call">「%1$s」グループ通話</string>
   <string name="WebRtcCallView__view_participants_list">参加者を確認する</string>
   <string name="WebRtcCallView__your_video_is_off">あなたの映像はオフです</string>
@@ -1165,12 +1188,19 @@
   <string name="WebRtcCallView__s_is_in_this_call">%1$s が参加中</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s と %2$s が参加中</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
-    <item quantity="other">%1$s, %2$s, %3$d などが参加中</item>
+    <item quantity="other">%1$s, %2$s ほか%3$d人が参加中</item>
   </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="other">参加者 · %1$d人</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s はブロックされました</string>
+  <string name="CallParticipantView__more_info">詳細</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">音声や映像の送受信を行いません。</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s からの音声と映像を受信できません</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s からの音声と映像を受信できません</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">相手があなたの安全番号の変更を検証していないか、相手の端末に問題があるか、あなたがブロックされている可能性があります。</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">国を選択してください</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">国番号を入力してください</string>
@@ -1202,8 +1232,10 @@
   <string name="RegistrationActivity_continue_last_attempt">続ける (最後！)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">あなたにプライバシーを。\nすべてのメッセージで自分らしく。</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">あなたの電話番号を入力してください</string>
+  <string name="RegistrationActivity_enter_your_phone_number">あなたの電話番号を入力してください</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">認証コードが届きます。通信料金が発生する場合があります。</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s に届いたコードを入力してください</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">携帯電話が圏内にあり、SMSや通話が可能か確認してください。</string>
   <string name="RegistrationActivity_phone_number_description">電話番号</string>
   <string name="RegistrationActivity_country_code_description">国番号</string>
   <string name="RegistrationActivity_call">通話</string>
@@ -1225,6 +1257,7 @@
   <string name="SearchFragment_header_conversations">会話</string>
   <string name="SearchFragment_header_contacts">連絡先</string>
   <string name="SearchFragment_header_messages">メッセージ</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">連絡先に追加</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signalに招待する</string>
@@ -1270,7 +1303,7 @@
   <string name="StickerPackPreviewActivity_untitled">無題</string>
   <string name="StickerPackPreviewActivity_unknown">不明</string>
   <string name="StickerPackPreviewActivity_install">インストール</string>
-  <string name="StickerPackPreviewActivity_remove">削除</string>
+  <string name="StickerPackPreviewActivity_remove">削除する</string>
   <string name="StickerPackPreviewActivity_stickers">ステッカー</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">ステッカーパックを読み込めませんでした</string>
   <!--SubmitDebugLogActivity-->
@@ -1347,6 +1380,9 @@
   <string name="UsernameEditFragment_username_is_invalid">無効なユーザ名です。</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ユーザ名は%1$dから%2$d文字にしてください。</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signalのユーザ名設定は任意です。ユーザ名を作成すると、他のSignalユーザはあなたの電話番号を知らなくても、このユーザ名であなたを検索して連絡できるようになります。</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="other">%d件の連絡先がSignalを使用しています！</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">連絡先の相手は古いSignalを使っています。Signalをアップデートしてから安全番号の検証を行うようお願いしてください。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">連絡先の相手は互換性のないQRコード形式を使った新しいバージョンのSignalを使っています。Signalをアップデートしてから比較してください。</string>
@@ -1361,7 +1397,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">メッセージの暗号化が正しくありません</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">メッセージの暗号化が正しくありません</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">メッセージは存在しないセッションのために暗号化されています</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">MMSメッセージの暗号化が正しくありません</string>
@@ -1466,12 +1502,14 @@
   <string name="WebRtcCallActivity__answered_on_a_linked_device">リンクした端末で応答しました。</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">リンクした端末で拒否しました。</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">リンクした端末で通話中です。</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">安全番号を変更したメンバーが、この通話に参加しています。</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$s との会話に対する安全番号が変更されました。だれかが通信を傍受しようとしているかも知れませんし、%2$s がSignalを再インストールしただけかも知れません。</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">この連絡先に対する安全番号を検証しておくとよいでしょう。</string>
   <string name="WebRtcCallScreen_new_safety_number_title">新しい安全番号</string>
   <string name="WebRtcCallScreen_accept">承認</string>
   <string name="WebRtcCallScreen_end_call">通話を終了</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">上にスワイプして表示を変更</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">拒否する</string>
   <string name="WebRtcCallScreen__answer">応答する</string>
@@ -1580,6 +1618,8 @@
   <string name="ConversationUpdateItem_learn_more">詳しく見る</string>
   <string name="ConversationUpdateItem_join_call">通話に参加する</string>
   <string name="ConversationUpdateItem_return_to_call">通話に戻る</string>
+  <string name="ConversationUpdateItem_call_is_full">満席です</string>
+  <string name="ConversationUpdateItem_invite_friends">友達を招待する</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">再生 … 停止</string>
   <string name="audio_view__download_accessibility_description">ダウンロード</string>
@@ -1598,6 +1638,9 @@
   <string name="safety_number_change_dialog__safety_number_changes">安全番号の変更</string>
   <string name="safety_number_change_dialog__send_anyway">とにかく送信する</string>
   <string name="safety_number_change_dialog__call_anyway">とにかく発信する</string>
+  <string name="safety_number_change_dialog__join_call">通話に参加する</string>
+  <string name="safety_number_change_dialog__continue_call">通話を続ける</string>
+  <string name="safety_number_change_dialog__leave_call">通話から抜ける</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">以下の方はアプリを再インストールしたか端末を変更した可能性があります。プライバシーを保証するために安全番号を検証してください。</string>
   <string name="safety_number_change_dialog__view">表示する</string>
   <string name="safety_number_change_dialog__previous_verified">以前に検証済み</string>
@@ -1660,7 +1703,7 @@
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">端末上のログを読めませんでした。代わりにADBを使ってデバッグログを取得できます。</string>
   <string name="log_submit_activity__thanks">ご協力ありがとうございます！</string>
-  <string name="log_submit_activity__submitting">送信中</string>
+  <string name="log_submit_activity__submitting">送信しています</string>
   <string name="log_submit_activity__no_browser_installed">ブラウザがインストールされていません</string>
   <string name="log_submit_activity__button_dont_submit">送信しない</string>
   <string name="log_submit_activity__button_submit">送信する</string>
@@ -1685,7 +1728,7 @@
   <string name="import_fragment__import_a_plaintext_backup_file">テキストのバックアップファイルをインポートします。「SMSのバックアップと復元」と互換性があります。</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">会話全体を見る</string>
-  <string name="load_more_header__loading">読み込み中</string>
+  <string name="load_more_header__loading">読み込んでいます</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">メディアがありません</string>
   <!--message_recipients_list_item-->
@@ -1708,7 +1751,7 @@
   <string name="CreateProfileActivity_next">次へ</string>
   <string name="CreateProfileActivity__username">ユーザ名</string>
   <string name="CreateProfileActivity__create_a_username">ユーザ名の作成</string>
-  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">MMSグループの名前と画像の設定を見られるのはあなただけです。</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">MMSグループの名前と画像はあなただけに表示されます。</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">グループ名と画像の編集</string>
   <string name="EditProfileFragment__group_name">グループ名</string>
@@ -1893,11 +1936,11 @@
   <string name="preferences__mmsc_password">MMSCパスワード</string>
   <string name="preferences__sms_delivery_reports">SMS配信レポート</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">送信するすべてのSMSで配信レポートを要求します</string>
-  <string name="preferences__chats">チャットとメディア</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">チャットとメディア</string> -->
   <string name="preferences__storage">ストレージ</string>
   <string name="preferences__conversation_length_limit">会話の最大メッセージ件数</string>
   <string name="preferences__keep_messages">メッセージの保存期間</string>
-  <string name="preferences__clear_message_history">メッセージ履歴を消去する</string>
+  <string name="preferences__clear_message_history">メッセージ履歴を削除する</string>
   <string name="preferences__linked_devices">リンク済み端末</string>
   <string name="preferences__light_theme">ライト</string>
   <string name="preferences__dark_theme">ダーク</string>
@@ -1914,6 +1957,7 @@
   <string name="preferences__advanced_pin_settings">PINの詳細設定</string>
   <string name="preferences__free_private_messages_and_calls">Signalユーザにプライベートメッセージと通話の自由を</string>
   <string name="preferences__submit_debug_log">デバッグログを提出</string>
+  <string name="preferences__delete_account">アカウントの削除</string>
   <string name="preferences__support_wifi_calling">Wi-Fi通話互換モード</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">この端末がWi-Fi経由のSMS/MMS送信を使用している場合は有効にしてください (Wi-Fi通話の有効時のみ有効になります)</string>
   <string name="preferences__incognito_keyboard">プライベートキーボード</string>
@@ -1935,14 +1979,14 @@
   <string name="preferences_storage__audio">音声</string>
   <string name="preferences_storage__review_storage">ストレージを確認</string>
   <string name="preferences_storage__delete_older_messages">より古いメッセージを消去しますか？</string>
-  <string name="preferences_storage__clear_message_history">メッセージ履歴を消去しますか？</string>
+  <string name="preferences_storage__clear_message_history">メッセージ履歴を削除しますか？</string>
   <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">%1$sより古いすべてのメッセージ履歴とメディアを、この端末から完全に削除します。</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">すべての会話で最新%1$s件のメッセージを残して完全に削除します。</string>
   <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">すべてのメッセージ履歴とメディアを、この端末から完全に削除します。</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">本当にすべてのメッセージ履歴を削除しますか？</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">すべてのメッセージ履歴を完全に削除します。取り消しはできません。</string>
   <string name="preferences_storage__delete_all_now">すべて削除する</string>
-  <string name="preferences_storage__forever">永久</string>
+  <string name="preferences_storage__forever">無期限</string>
   <string name="preferences_storage__one_year">1年</string>
   <string name="preferences_storage__six_months">6か月</string>
   <string name="preferences_storage__thirty_days">30日</string>
@@ -2033,7 +2077,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">新しい会話</string>
   <string name="conversation_list_fragment__open_camera_description">カメラを開く</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">友達にメッセージを送って始めよう！</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">まだチャットがありません。\n友達にメッセージを送って始めましょう。</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">セキュアセッションをリセット</string>
   <!--conversation_muted-->
@@ -2070,8 +2114,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">クリップボードにコピー</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">クリップボードと比較</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">既定のSMSアプリにする</string>
-  <string name="reminder_header_sms_default_text">タップしてSignalを規定のSMSアプリにします。</string>
   <string name="reminder_header_sms_import_title">システムSMSのインポート</string>
   <string name="reminder_header_sms_import_text">タップしてこの電話のSMSメッセージをSignalの暗号化されたデータベースにコピーします。</string>
   <string name="reminder_header_push_title">Signalメッセージと通話の有効化</string>
@@ -2211,10 +2253,10 @@
   <string name="ResearchMegaphone_learn_more">詳しく見る</string>
   <string name="ResearchMegaphone_dismiss">キャンセル</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signalリサーチ</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>私たちはプライバシーを尊重しています。</b></p><p>Signalはあなたのデータを収集したり追跡することはありません。Signalをより良いものにするために、ユーザの皆様からのフィードバックを<b>お待ちしています。</b></p><p>私たちは、あなたのSignalの使用方法について調査しています。この調査では、あなたを特定するデータを収集することはありません。追加のフィードバックを共有されたい場合は、連絡先情報を提供することもできます。</p><p>お時間とご意見をお持ちの方は、ぜひご連絡ください。</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">調査に参加する</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>私たちはプライバシーを尊重しています。</b></p><p>Signalはあなたのデータを収集したり追跡することはありません。Signalをより良いものにするために、ユーザの皆様からのフィードバックを<b>お待ちしています。</b></p><p>私たちは、あなたのSignalの使用方法についてアンケート調査を行っています。この調査では、あなたを特定するデータを収集することはありません。追加のフィードバックを共有されたい場合は、連絡先情報を提供することもできます。</p><p>お時間とご意見をお持ちの方は、ぜひご連絡ください。</p>]]></string>
+  <string name="ResearchMegaphoneDialog_take_the_survey">アンケートに参加する</string>
   <string name="ResearchMegaphoneDialog_no_thanks">参加しない</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">この調査は、Alchemerが安全なドメイン (surveys.signalusers.org) でホストしています。</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">このアンケートは、Alchemerが安全なドメイン (surveys.signalusers.org) でホストしています。</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
   <string name="ConversationListFragment_loading">読み込んでいます…</string>
@@ -2258,8 +2300,9 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">すべてのローカルバックアップを削除して無効にしますか？</string>
   <string name="BackupDialog_delete_backups_statement">バックアップを削除する</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">バックアップを有効にするには、フォルダを選択してください。バックアップはこの場所に保存されます。</string>
-  <string name="BackupDialog_choose_folder">フォルダを選択</string>
+  <string name="BackupDialog_choose_folder">フォルダを選択する</string>
   <string name="BackupDialog_copied_to_clipboard">クリップボードにコピーしました</string>
+  <string name="BackupDialog_no_file_picker_available">ファイルピッカーがありません。</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">確認したいバックアップ用パスフレーズを入力してください</string>
   <string name="BackupDialog_verify">確認する</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">正しいバックアップ用パスフレーズが入力されました</string>
@@ -2291,7 +2334,7 @@
   <string name="PhoneNumberPrivacy_my_contacts_see_description">あなたの連絡先だけが、Signal上であなたの電話番号を確認できます。</string>
   <string name="preferences_app_protection__screen_lock">画面ロック</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">SignalをAndroidの画面ロックや指紋認証でロックします</string>
-  <string name="preferences_app_protection__screen_lock_inactivity_timeout">画面ロックの無操作タイムアウト</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">画面ロックまでの無操作時間</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
   <string name="preferences_app_protection__create_a_pin">PINを作成する</string>
   <string name="preferences_app_protection__change_your_pin">PINを変更する</string>
@@ -2365,7 +2408,7 @@
   <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s をグループ管理者から外しますか？</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">「%1$s」がこのグループの設定やメンバーを編集できるようになります。</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">このグループから %1$s を削除しますか？</string>
-  <string name="RecipientBottomSheet_remove">削除</string>
+  <string name="RecipientBottomSheet_remove">削除する</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">クリップボードにコピーしました</string>
   <string name="GroupRecipientListItem_admin">管理者</string>
   <string name="GroupRecipientListItem_approve_description">承認する</string>
@@ -2414,10 +2457,39 @@
   <string name="ReviewCard__member">メンバー</string>
   <string name="ReviewCard__request">申請</string>
   <string name="ReviewCard__your_contact">あなたの連絡先</string>
-  <string name="ReviewCard__remove_from_group">グループから削除</string>
+  <string name="ReviewCard__remove_from_group">グループから削除する</string>
   <string name="ReviewCard__update_contact">連絡先をアップデートする</string>
   <string name="ReviewCard__block">ブロックする</string>
   <string name="ReviewCard__delete">削除する</string>
   <string name="ReviewCard__recently_changed">最近、プロフィール名を %1$s から %2$s に変更しました。</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s が参加しました</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s と %2$s が参加しました</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s および %3$s が参加しました</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s ほか%3$d名が参加しました</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s が退出しました</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s と %2$s が退出しました</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s および %3$s が退出しました</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ほか%3$d名が退出しました</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">あなた (別端末)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (別端末)</string> -->
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">アカウントを削除すると:</string>
+  <string name="DeleteAccountFragment__enter_your_phone_number">あなたの電話番号を入力してください</string>
+  <string name="DeleteAccountFragment__delete_account">アカウントを削除する</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">あなたのアカウント情報とプロフィール画像を削除します</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">あなたのメッセージをすべて削除します</string>
+  <string name="DeleteAccountFragment__no_country_code">国番号が指定されていません</string>
+  <string name="DeleteAccountFragment__no_number">電話番号が指定されていません</string>
+  <string name="DeleteAccountFragment__the_phone_number">入力された電話番号は、あなたのアカウントのものと一致しません。</string>
+  <string name="DeleteAccountFragment__are_you_sure">本当にアカウントを削除しますか？</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">あなたのSignalアカウントを削除して、アプリを初期化します。処理が完了するとアプリを閉じます。</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">アカウントの削除に失敗しました。ネットワーク接続を確認してください。</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">ローカルデータの削除に失敗しました。これはシステムのアプリ設定にて、手動で削除できます。</string>
+  <string name="DeleteAccountFragment__launch_app_settings">アプリ設定を開く</string>
+  <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">国を検索します</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">スキップ</string>
   <!--EOF-->
 </resources>

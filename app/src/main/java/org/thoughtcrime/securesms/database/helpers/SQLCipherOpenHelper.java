@@ -41,8 +41,10 @@ import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RemappedRecordsDatabase;
 import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.SessionDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.SqlCipherDatabaseHook;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.StorageKeyDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -76,7 +78,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-public class SQLCipherOpenHelper extends SQLiteOpenHelper {
+public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatabase {
 
   @SuppressWarnings("unused")
   private static final String TAG = SQLCipherOpenHelper.class.getSimpleName();
@@ -164,27 +166,17 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int GV1_MIGRATION_LAST_SEEN          = 82;
   private static final int VIEWED_RECEIPTS                  = 83;
   private static final int CLEAN_UP_GV1_IDS                 = 84;
+  private static final int GV1_MIGRATION_REFACTOR           = 85;
+  private static final int CLEAR_PROFILE_KEY_CREDENTIALS    = 86;
 
-  private static final int    DATABASE_VERSION = 84;
+  private static final int    DATABASE_VERSION = 86;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
   private final DatabaseSecret databaseSecret;
 
   public SQLCipherOpenHelper(@NonNull Context context, @NonNull DatabaseSecret databaseSecret) {
-    super(context, DATABASE_NAME, null, DATABASE_VERSION, new SQLiteDatabaseHook() {
-      @Override
-      public void preKey(SQLiteDatabase db) {
-        db.rawExecSQL("PRAGMA cipher_default_kdf_iter = 1;");
-        db.rawExecSQL("PRAGMA cipher_default_page_size = 4096;");
-      }
-
-      @Override
-      public void postKey(SQLiteDatabase db) {
-        db.rawExecSQL("PRAGMA kdf_iter = '1';");
-        db.rawExecSQL("PRAGMA cipher_page_size = 4096;");
-      }
-    });
+    super(context, DATABASE_NAME, null, DATABASE_VERSION, new SqlCipherDatabaseHook());
 
     this.context        = context.getApplicationContext();
     this.databaseSecret = databaseSecret;
@@ -207,11 +199,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(SessionDatabase.CREATE_TABLE);
     db.execSQL(StickerDatabase.CREATE_TABLE);
     db.execSQL(StorageKeyDatabase.CREATE_TABLE);
-    db.execSQL(KeyValueDatabase.CREATE_TABLE);
-    db.execSQL(MegaphoneDatabase.CREATE_TABLE);
     db.execSQL(MentionDatabase.CREATE_TABLE);
     executeStatements(db, SearchDatabase.CREATE_TABLE);
-    executeStatements(db, JobDatabase.CREATE_TABLE);
     executeStatements(db, RemappedRecordsDatabase.CREATE_TABLE);
 
     executeStatements(db, RecipientDatabase.CREATE_INDEXS);
@@ -1234,6 +1223,24 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         }
       }
 
+      if (oldVersion < GV1_MIGRATION_REFACTOR) {
+        ContentValues values = new ContentValues(1);
+        values.putNull("former_v1_members");
+
+        int count = db.update("groups", values, "former_v1_members NOT NULL", null);
+
+        Log.i(TAG, "Cleared former_v1_members for " + count + " rows");
+      }
+
+      if (oldVersion < CLEAR_PROFILE_KEY_CREDENTIALS) {
+        ContentValues values = new ContentValues(1);
+        values.putNull("profile_key_credential");
+
+        int count = db.update("recipient", values, "profile_key_credential NOT NULL", null);
+
+        Log.i(TAG, "Cleared profile key credentials for " + count + " rows");
+      }
+
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
@@ -1252,6 +1259,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
   public org.thoughtcrime.securesms.database.SQLiteDatabase getWritableDatabase() {
     return new org.thoughtcrime.securesms.database.SQLiteDatabase(getWritableDatabase(databaseSecret.asString()));
+  }
+
+  @Override
+  public @NonNull SQLiteDatabase getSqlCipherDatabase() {
+    return getWritableDatabase().getSqlCipherDatabase();
   }
 
   public void markCurrent(SQLiteDatabase db) {

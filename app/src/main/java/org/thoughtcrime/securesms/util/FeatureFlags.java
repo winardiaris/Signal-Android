@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
+import android.os.Build;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -13,7 +14,6 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
-import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
@@ -52,6 +52,7 @@ public final class FeatureFlags {
   private static final String USERNAMES                    = "android.usernames";
   private static final String GROUPS_V2_RECOMMENDED_LIMIT  = "global.groupsv2.maxGroupSize";
   private static final String GROUPS_V2_HARD_LIMIT         = "global.groupsv2.groupSizeHardLimit";
+  private static final String GROUP_NAME_MAX_LENGTH        = "global.groupsv2.maxNameLength";
   private static final String INTERNAL_USER                = "android.internalUser";
   private static final String VERIFY_V2                    = "android.verifyV2";
   private static final String PHONE_NUMBER_PRIVACY_VERSION = "android.phoneNumberPrivacyVersion";
@@ -60,16 +61,19 @@ public final class FeatureFlags {
   public  static final String DONATE_MEGAPHONE             = "android.donate";
   private static final String VIEWED_RECEIPTS              = "android.viewed.receipts";
   private static final String GROUP_CALLING                = "android.groupsv2.calling.2";
-  private static final String GV1_AUTO_MIGRATE             = "android.groupsV1Migration.auto.4";
   private static final String GV1_MANUAL_MIGRATE           = "android.groupsV1Migration.manual";
   private static final String GV1_FORCED_MIGRATE           = "android.groupsV1Migration.forced";
+  private static final String GV1_MIGRATION_JOB            = "android.groupsV1Migration.job";
   private static final String SEND_VIEWED_RECEIPTS         = "android.sendViewedReceipts";
+  private static final String CUSTOM_VIDEO_MUXER           = "android.customVideoMuxer";
+  private static final String CDS_REFRESH_INTERVAL         = "cds.syncInterval.seconds";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
    * remotely, place it in here.
    */
-  private static final Set<String> REMOTE_CAPABLE = SetUtil.newHashSet(
+  @VisibleForTesting
+  static final Set<String> REMOTE_CAPABLE = SetUtil.newHashSet(
       GROUPS_V2_RECOMMENDED_LIMIT,
       GROUPS_V2_HARD_LIMIT,
       INTERNAL_USER,
@@ -79,11 +83,19 @@ public final class FeatureFlags {
       RESEARCH_MEGAPHONE_1,
       DONATE_MEGAPHONE,
       VIEWED_RECEIPTS,
-      GV1_AUTO_MIGRATE,
+      GV1_MIGRATION_JOB,
       GV1_MANUAL_MIGRATE,
       GV1_FORCED_MIGRATE,
       GROUP_CALLING,
-      SEND_VIEWED_RECEIPTS
+      SEND_VIEWED_RECEIPTS,
+      CUSTOM_VIDEO_MUXER,
+      CDS_REFRESH_INTERVAL,
+      GROUP_NAME_MAX_LENGTH
+  );
+
+  @VisibleForTesting
+  static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(
+      PHONE_NUMBER_PRIVACY_VERSION
   );
 
   /**
@@ -93,7 +105,8 @@ public final class FeatureFlags {
    * an addition to this map.
    */
   @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-  private static final Map<String, Object> FORCED_VALUES = new HashMap<String, Object>() {{
+  @VisibleForTesting
+  static final Map<String, Object> FORCED_VALUES = new HashMap<String, Object>() {{
   }};
 
   /**
@@ -103,17 +116,24 @@ public final class FeatureFlags {
    * will be updated arbitrarily at runtime. This will make values more responsive, but also places
    * more burden on the reader to ensure that the app experience remains consistent.
    */
-  private static final Set<String> HOT_SWAPPABLE = SetUtil.newHashSet(
+  @VisibleForTesting
+  static final Set<String> HOT_SWAPPABLE = SetUtil.newHashSet(
       VERIFY_V2,
-      CLIENT_EXPIRATION
+      CLIENT_EXPIRATION,
+      GROUP_CALLING,
+      GV1_MIGRATION_JOB,
+      CUSTOM_VIDEO_MUXER,
+      CDS_REFRESH_INTERVAL,
+      GROUP_NAME_MAX_LENGTH
   );
 
   /**
    * Flags in this set will stay true forever once they receive a true value from a remote config.
    */
-  private static final Set<String> STICKY = SetUtil.newHashSet(
+  @VisibleForTesting
+  static final Set<String> STICKY = SetUtil.newHashSet(
       VERIFY_V2
-    );
+  );
 
   /**
    * Listeners that are called when the value in {@link #REMOTE_VALUES} changes. That means that
@@ -127,7 +147,6 @@ public final class FeatureFlags {
    * desired test state.
    */
   private static final Map<String, OnFlagChange> FLAG_CHANGE_LISTENERS = new HashMap<String, OnFlagChange>() {{
-    put(GV1_AUTO_MIGRATE, change -> ApplicationDependencies.getJobManager().add(new RefreshAttributesJob()));
   }};
 
   private static final Map<String, Object> REMOTE_VALUES = new TreeMap<>();
@@ -228,27 +247,42 @@ public final class FeatureFlags {
 
   /** Whether or not group calling is enabled. */
   public static boolean groupCalling() {
-    return getBoolean(GROUP_CALLING, false);
+    return Build.VERSION.SDK_INT > 19 && getBoolean(GROUP_CALLING, false);
   }
 
-  /** Whether or not auto-migration from GV1->GV2 is enabled. */
-  public static boolean groupsV1AutoMigration() {
-    return getBoolean(GV1_AUTO_MIGRATE, false);
+  /** Whether or not we should run the job to proactively migrate groups. */
+  public static boolean groupsV1MigrationJob() {
+    return getBoolean(GV1_MIGRATION_JOB, false);
   }
 
   /** Whether or not manual migration from GV1->GV2 is enabled. */
   public static boolean groupsV1ManualMigration() {
-    return getBoolean(GV1_MANUAL_MIGRATE, false) && groupsV1AutoMigration();
+    return getBoolean(GV1_MANUAL_MIGRATE, false);
   }
 
   /** Whether or not forced migration from GV1->GV2 is enabled. */
   public static boolean groupsV1ForcedMigration() {
-    return getBoolean(GV1_FORCED_MIGRATE, false) && groupsV1ManualMigration() && groupsV1AutoMigration();
+    return getBoolean(GV1_FORCED_MIGRATE, false) && groupsV1ManualMigration();
   }
 
   /** Whether or not to send viewed receipts. */
   public static boolean sendViewedReceipts() {
     return getBoolean(SEND_VIEWED_RECEIPTS, false);
+  }
+
+  /** Whether to use the custom streaming muxer or built in android muxer. */
+  public static boolean useStreamingVideoMuxer() {
+    return getBoolean(CUSTOM_VIDEO_MUXER, false);
+  }
+
+  /** The time in between routine CDS refreshes, in seconds. */
+  public static int cdsRefreshIntervalSeconds() {
+    return getInteger(CDS_REFRESH_INTERVAL, (int) TimeUnit.HOURS.toSeconds(48));
+  }
+
+  /** The maximum number of grapheme */
+  public static int getMaxGroupNameGraphemeLength() {
+    return Math.max(32, getInteger(GROUP_NAME_MAX_LENGTH, -1));
   }
 
   /** Only for rendering debug info. */

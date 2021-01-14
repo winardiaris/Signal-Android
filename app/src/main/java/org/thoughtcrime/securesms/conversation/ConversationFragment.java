@@ -22,6 +22,7 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -66,9 +67,11 @@ import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.ConversationScrollToView;
 import org.thoughtcrime.securesms.components.ConversationTypingView;
@@ -93,6 +96,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
+import org.thoughtcrime.securesms.groups.ui.invitesandrequests.invite.GroupLinkInviteFriendsBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob;
@@ -121,7 +125,6 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
-import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.HtmlUtil;
@@ -147,9 +150,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
 
-@Trace
 @SuppressLint("StaticFieldLeak")
 public class ConversationFragment extends LoggingFragment {
   private static final String TAG = ConversationFragment.class.getSimpleName();
@@ -250,8 +253,11 @@ public class ConversationFragment extends LoggingFragment {
     this.messageCountsViewModel = ViewModelProviders.of(requireActivity()).get(MessageCountsViewModel.class);
     this.conversationViewModel  = ViewModelProviders.of(requireActivity(), new ConversationViewModel.Factory()).get(ConversationViewModel.class);
 
-    conversationViewModel.getMessages().observe(this, list -> {
-      getListAdapter().submitList(list);
+    conversationViewModel.getMessages().observe(this, messages -> {
+      ConversationAdapter adapter = getListAdapter();
+      if (adapter != null) {
+        getListAdapter().submitList(messages);
+      }
     });
 
     conversationViewModel.getConversationMetadata().observe(this, this::presentConversationMetadata);
@@ -1005,7 +1011,7 @@ public class ConversationFragment extends LoggingFragment {
 
   private void moveToPosition(int position, @Nullable Runnable onMessageNotFound) {
     Log.d(TAG, "moveToPosition(" + position + ")");
-    conversationViewModel.onConversationDataAvailable(threadId, position);
+    conversationViewModel.getPagingController().onDataNeededAroundIndex(position);
     snapToTopDataObserver.buildScrollPosition(position)
                          .withOnPerformScroll(((layoutManager, p) ->
                              list.post(() -> {
@@ -1414,8 +1420,57 @@ public class ConversationFragment extends LoggingFragment {
     }
 
     @Override
+    public void onDecryptionFailedLearnMoreClicked() {
+      new AlertDialog.Builder(requireContext())
+          .setView(R.layout.decryption_failed_dialog)
+          .setPositiveButton(android.R.string.ok, (d, w) -> {
+            d.dismiss();
+          })
+          .setNeutralButton(R.string.ConversationFragment_contact_us, (d, w) -> {
+            Intent intent = new Intent(requireContext(), ApplicationPreferencesActivity.class);
+            intent.putExtra(ApplicationPreferencesActivity.LAUNCH_TO_HELP_FRAGMENT, true);
+
+            startActivity(intent);
+            d.dismiss();
+          })
+          .show();
+    }
+
+    @Override
+    public void onSafetyNumberLearnMoreClicked(@NonNull Recipient recipient) {
+      AlertDialog dialog = new AlertDialog.Builder(requireContext())
+                                          .setView(R.layout.safety_number_changed_learn_more_dialog)
+                                          .setPositiveButton(R.string.ConversationFragment_verify, (d, w) -> {
+                                            SimpleTask.run(getLifecycle(), () -> {
+                                              return DatabaseFactory.getIdentityDatabase(requireContext()).getIdentity(recipient.getId());
+                                            }, identityRecord -> {
+                                              if (identityRecord.isPresent()) {
+                                                startActivity(VerifyIdentityActivity.newIntent(requireContext(), identityRecord.get()));
+                                              }});
+                                            d.dismiss();
+                                          })
+                                          .setNegativeButton(R.string.ConversationFragment_not_now, (d, w) -> {
+                                            d.dismiss();
+                                          })
+                                          .create();
+      dialog.setOnShowListener(d -> {
+        TextView title = Objects.requireNonNull(dialog.findViewById(R.id.safety_number_learn_more_title));
+        TextView body  = Objects.requireNonNull(dialog.findViewById(R.id.safety_number_learn_more_body));
+
+        title.setText(getString(R.string.ConversationFragment_your_safety_number_with_s_changed, recipient.getDisplayName(requireContext())));
+        body.setText(getString(R.string.ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal, recipient.getDisplayName(requireContext())));
+      });
+
+      dialog.show();
+    }
+    @Override
     public void onJoinGroupCallClicked() {
       CommunicationActions.startVideoCall(requireActivity(), recipient.get());
+    }
+
+    @Override
+    public void onInviteFriendsToGroupClicked(@NonNull GroupId.V2 groupId) {
+      GroupLinkInviteFriendsBottomSheetDialogFragment.show(requireActivity().getSupportFragmentManager(), groupId);
     }
   }
 
